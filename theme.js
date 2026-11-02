@@ -25,70 +25,80 @@
     root.classList.toggle('dsh-anime', on)
     var label = toggle && toggle.querySelector('.txt')
     if (label) label.textContent = on ? '二次元主题 · 开' : '二次元主题 · 关'
+    // the titan strip only exists while the skin is on
+    try {
+      document.body.style.backgroundImage = on ? TITAN_BACKGROUND : ''
+    } catch (e) {}
     try { localStorage.setItem(STORAGE_KEY, on ? '1' : '0') } catch (e) {}
   }
 
-  /* ---- titan silhouettes -----------------------------------------------
-     Built from round-capped limb strokes plus filled torso/head masses
-     instead of one hand-traced contour: that keeps the proportions organic
-     (thick deltoids, tapering legs) without exposing crude polygon edges.
-     Three original silhouettes: the towering Colossal, the bulky hunched
-     Armored, and the low quadrupedal Cart Titan. */
+  /* ---- titan strip (painted as the body background) ---------------------
+     The titans live in the *canvas background*, below every piece of UI, so
+     they can never cover the conversation. One 2400x420 strip holds the
+     three silhouettes; theme.css scrolls the background sideways so they
+     read as walking. Round-capped limb strokes keep the anatomy organic. */
 
-  // Colossal Titan — very tall, arms hanging wide, steam rising off the body.
+  var TITAN_PAINT = "#0a1120"
+
+  function titanGroup(translate, inner) {
+    return (
+      "<g transform='translate(" + translate + ")' fill='" + TITAN_PAINT +
+      "' stroke='" + TITAN_PAINT + "' stroke-linecap='round' stroke-linejoin='round'>" +
+      inner + '</g>'
+    )
+  }
+
+  // Colossal Titan (200x420) — towering, arms hanging wide.
   var COLOSSAL =
-    '<svg viewBox="0 0 200 420" fill="currentColor" aria-hidden="true">' +
-    // legs & arms as tapered tubes
-    '<path class="limb" stroke-width="36" d="M84 244 C78 300 76 352 80 404"/>' +
-    '<path class="limb" stroke-width="36" d="M116 244 C122 300 124 352 120 404"/>' +
-    '<path class="limb" stroke-width="26" d="M62 126 C50 172 44 216 46 258"/>' +
-    '<path class="limb" stroke-width="26" d="M138 126 C150 172 156 216 154 258"/>' +
-    // torso: broad chest tapering into the waist
-    '<path d="M100 62 C126 62 148 78 156 106 L162 148 C158 190 152 220 146 250 ' +
-    'L54 250 C48 220 42 190 38 148 L44 106 C52 78 74 62 100 62 Z"/>' +
-    // deltoids + head + jaw
-    '<circle cx="60" cy="120" r="20"/><circle cx="140" cy="120" r="20"/>' +
-    '<ellipse cx="100" cy="40" rx="17" ry="21"/>' +
-    '<path d="M88 54 L100 70 L112 54 Z"/>' +
-    '</svg>'
+    "<path fill='none' stroke-width='36' d='M84 244 C78 300 76 352 80 404'/>" +
+    "<path fill='none' stroke-width='36' d='M116 244 C122 300 124 352 120 404'/>" +
+    "<path fill='none' stroke-width='26' d='M62 126 C50 172 44 216 46 258'/>" +
+    "<path fill='none' stroke-width='26' d='M138 126 C150 172 156 216 154 258'/>" +
+    "<path d='M100 62 C126 62 148 78 156 106 L162 148 C158 190 152 220 146 250 " +
+    "L54 250 C48 220 42 190 38 148 L44 106 C52 78 74 62 100 62 Z'/>" +
+    "<circle cx='60' cy='120' r='20'/><circle cx='140' cy='120' r='20'/>" +
+    "<ellipse cx='100' cy='40' rx='17' ry='21'/>" +
+    "<path d='M88 54 L100 70 L112 54 Z'/>"
 
-  // Armored Titan — broad, hunched, heavy shoulder plates, glowing eyes.
+  // Armored Titan (200x340) — broad, hunched, heavy pauldrons, glowing eyes.
   var ARMORED =
-    '<svg viewBox="0 0 200 340" fill="currentColor" aria-hidden="true">' +
-    '<path class="limb" stroke-width="42" d="M80 208 C74 258 72 300 76 336"/>' +
-    '<path class="limb" stroke-width="42" d="M120 208 C126 258 128 300 124 336"/>' +
-    '<path class="limb" stroke-width="34" d="M40 112 C28 158 24 196 28 236"/>' +
-    '<path class="limb" stroke-width="34" d="M160 112 C172 158 176 196 172 236"/>' +
-    '<path d="M100 58 C132 58 158 74 168 104 L174 150 C170 186 164 210 158 234 ' +
-    'L42 234 C36 210 30 186 26 150 L32 104 C42 74 68 58 100 58 Z"/>' +
-    // heavy pauldrons + tucked head
-    '<path d="M22 104 C22 84 44 74 62 82 L66 116 L26 122 Z"/>' +
-    '<path d="M178 104 C178 84 156 74 138 82 L134 116 L174 122 Z"/>' +
-    '<ellipse cx="100" cy="38" rx="18" ry="16"/>' +
-    '<path d="M86 48 L100 62 L114 48 Z"/>' +
-    '<circle class="eye" cx="93" cy="36" r="3.4"/>' +
-    '<circle class="eye" cx="107" cy="36" r="3.4"/>' +
-    '</svg>'
+    "<path fill='none' stroke-width='42' d='M80 208 C74 258 72 300 76 336'/>" +
+    "<path fill='none' stroke-width='42' d='M120 208 C126 258 128 300 124 336'/>" +
+    "<path fill='none' stroke-width='34' d='M40 112 C28 158 24 196 28 236'/>" +
+    "<path fill='none' stroke-width='34' d='M160 112 C172 158 176 196 172 236'/>" +
+    "<path d='M100 58 C132 58 158 74 168 104 L174 150 C170 186 164 210 158 234 " +
+    "L42 234 C36 210 30 186 26 150 L32 104 C42 74 68 58 100 58 Z'/>" +
+    "<path d='M22 104 C22 84 44 74 62 82 L66 116 L26 122 Z'/>" +
+    "<path d='M178 104 C178 84 156 74 138 82 L134 116 L174 122 Z'/>" +
+    "<ellipse cx='100' cy='38' rx='18' ry='16'/>" +
+    "<path d='M86 48 L100 62 L114 48 Z'/>" +
+    "<circle cx='93' cy='36' r='3.4' fill='#ff5a3c'/>" +
+    "<circle cx='107' cy='36' r='3.4' fill='#ff5a3c'/>"
 
-  // Cart Titan — low quadruped: long body, four legs, forward snout, cargo.
+  // Cart Titan (380x180) — low quadruped: long body, four legs, cargo humps.
   var CART =
-    '<svg viewBox="0 0 320 150" fill="currentColor" aria-hidden="true">' +
-    '<path class="limb" stroke-width="12" d="M96 96 L92 140"/>' +
-    '<path class="limb" stroke-width="12" d="M124 98 L122 140"/>' +
-    '<path class="limb" stroke-width="12" d="M212 96 L214 140"/>' +
-    '<path class="limb" stroke-width="12" d="M240 94 L242 138"/>' +
-    '<path class="limb" stroke-width="44" d="M58 86 C110 66 200 62 248 78"/>' +
-    '<path class="limb" stroke-width="14" d="M140 68 C146 44 170 44 176 66"/>' +
-    '<path class="limb" stroke-width="14" d="M184 64 C190 42 214 42 220 62"/>' +
-    '<ellipse cx="272" cy="74" rx="18" ry="14"/>' +
-    '<path d="M286 72 L316 78 L312 92 L280 86 Z"/>' +
+    "<path fill='none' stroke-width='9' d='M66 92 C46 96 36 108 32 126'/>" +
+    "<path fill='none' stroke-width='58' d='M92 96 C150 78 226 76 278 92'/>" +
+    "<path fill='none' stroke-width='30' d='M282 90 C298 86 308 80 314 74'/>" +
+    "<ellipse cx='326' cy='70' rx='17' ry='13'/>" +
+    "<path d='M338 64 L372 70 L368 86 L336 80 Z'/>" +
+    "<path fill='none' stroke-width='20' d='M112 112 L100 170'/>" +
+    "<path fill='none' stroke-width='20' d='M140 110 L136 170'/>" +
+    "<path fill='none' stroke-width='20' d='M304 108 L298 170'/>" +
+    "<path fill='none' stroke-width='20' d='M330 104 L326 170'/>" +
+    "<path fill='none' stroke-width='20' d='M150 76 C158 46 188 46 196 74'/>" +
+    "<path fill='none' stroke-width='20' d='M204 72 C212 44 242 44 250 70'/>"
+
+  var TITAN_STRIP =
+    "<svg xmlns='http://www.w3.org/2000/svg' width='2400' height='420' " +
+    "viewBox='0 0 2400 420'>" +
+    titanGroup('40 0', COLOSSAL) +
+    titanGroup('760 80', ARMORED) +
+    titanGroup('1400 240', CART) +
     '</svg>'
 
-  var TITANS = [
-    { cls: 't-colossal', html: COLOSSAL },
-    { cls: 't-armored', html: ARMORED },
-    { cls: 't-cart', html: CART }
-  ]
+  var TITAN_BACKGROUND = 'url("data:image/svg+xml;charset=utf-8,' +
+    encodeURIComponent(TITAN_STRIP) + '")'
 
   /* ---- Wings of Freedom emblem ----------------------------------------- */
   var EMBLEM =
@@ -159,16 +169,8 @@
     vignette.id = 'dsh-anime-vignette'
     document.body.appendChild(vignette)
 
-    /* titans */
-    var field = document.createElement('div')
-    field.id = 'dsh-anime-titans'
-    TITANS.forEach(function (t) {
-      var wrap = document.createElement('div')
-      wrap.className = 'dsh-anime-titan ' + t.cls
-      wrap.innerHTML = t.html
-      field.appendChild(wrap)
-    })
-    document.body.appendChild(field)
+    /* the titans are the body background (see TITAN_BACKGROUND), so there is
+       no DOM layer for them — nothing can sit on top of the conversation */
 
     /* senbonzakura petals */
     if (!prefersReduced) {

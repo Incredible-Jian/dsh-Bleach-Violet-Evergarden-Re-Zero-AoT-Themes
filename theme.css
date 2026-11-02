@@ -111,63 +111,21 @@ html.dsh-anime body::after {
   background: radial-gradient(120% 120% at 50% 42%, transparent 58%, rgba(0, 0, 0, 0.45) 100%);
 }
 
-/* ---- drifting titan silhouettes (the backdrop) ------------------------- */
-#dsh-anime-titans {
-  position: fixed;
-  inset: 0;
-  z-index: 2147481200;
-  pointer-events: none;
-  overflow: hidden;
+/* ---- titans as a true canvas backdrop ----------------------------------
+   The silhouettes are painted as the *body background* (set from theme.js as
+   a data-URI strip) and the background is scrolled sideways, so they read as
+   titans walking across the far background while every bit of UI — chat text
+   included — paints on top of them. */
+html.dsh-anime #root { background: transparent !important; }
+html.dsh-anime body {
+  background-repeat: repeat-x;
+  background-position: 0 bottom;
+  background-size: 2400px 420px;
+  animation: anime-titan-stroll 140s linear infinite;
 }
-.dsh-anime-titan {
-  position: absolute;
-  bottom: 0;
-  /* solid colour + container opacity: overlapping limbs must not compound
-     into visible seams, so the element (not the paint) carries the alpha */
-  opacity: 0.5;
-  color: #04060c;
-  filter: drop-shadow(0 0 10px rgba(216, 58, 48, 0.38))
-    drop-shadow(0 0 26px rgba(74, 158, 255, 0.16));
-  will-change: transform;
-}
-.dsh-anime-titan svg { display: block; height: 100%; width: auto; overflow: visible; }
-.dsh-anime-titan svg .limb {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.dsh-anime-titan.t-colossal { height: 54vh; animation: anime-march 70s linear infinite; }
-.dsh-anime-titan.t-armored { height: 42vh; animation: anime-march 90s linear infinite; animation-delay: -32s; }
-.dsh-anime-titan.t-cart { height: 21vh; animation: anime-march 54s linear infinite; animation-delay: -14s; }
-
-/* steam rising off the Colossal Titan */
-.dsh-anime-titan .steam {
-  fill: rgba(214, 222, 236, 0.5);
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: anime-steam 5s ease-in-out infinite;
-}
-.dsh-anime-titan .steam.s2 { animation-delay: -1.6s; }
-.dsh-anime-titan .steam.s3 { animation-delay: -3.2s; }
-@keyframes anime-steam {
-  0% { opacity: 0; transform: translateY(6px) scaleX(0.8); }
-  40% { opacity: 0.5; }
-  100% { opacity: 0; transform: translateY(-16px) scaleX(1.3); }
-}
-
-/* glowing eyes of the Armored Titan */
-.dsh-anime-titan .eye {
-  fill: #ff5a3c;
-  filter: drop-shadow(0 0 4px #ff5a3c);
-}
-
-@keyframes anime-march {
-  0% { transform: translateX(-26vw) scaleX(1); }
-  49% { transform: translateX(60vw) scaleX(1); }
-  50% { transform: translateX(60vw) scaleX(-1); }
-  99% { transform: translateX(-26vw) scaleX(-1); }
-  100% { transform: translateX(-26vw) scaleX(1); }
+@keyframes anime-titan-stroll {
+  from { background-position-x: 0; }
+  to { background-position-x: -2400px; }
 }
 
 /* ---- senbonzakura petals (Byakuya-style scattering blades) ------------- */
