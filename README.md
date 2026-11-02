@@ -28,11 +28,13 @@
 - **Attack on Titan / 进击的巨人** — Survey Corps crimson `#d83a30`, plus a simplified **Wings of Freedom** emblem and **titan silhouettes** (Attack, Armored & Cart Titan) slowly marching across the backdrop.
 - **Bleach / 死神** — a deep ink-black ground, bone-white text, spiritual orange, and **卍 (manji) bankai marks** in all four corners.
 - **Re:Zero / Re:从零开始的异世界生活** — Emilia's amethyst `#8a63d2` and Rem's azure `#4a9eff` woven through the brand gradient.
-- **Violet Evergarden / 紫罗兰永恒花园** — teal / gold / emerald accents (`#2f8f86` / `#cda349` / `#3fae8f`) and a soft cinematic **vignette**.
+- **Violet Evergarden / 紫罗兰永恒花园** — teal / gold / emerald accents (`#2f8f86` / `#cda349` / `#3fae8f`), a soft cinematic **vignette**, a framed **portrait poster** in the corner (golden braids, the emerald brooch, letters in hand), **letters drifting on the wind**, and period **serif headings**.
 
 It also unifies the typeface across the entire UI, adds drifting **senbonzakura petals** (Byakuya-style scattering blades), gradient scrollbars/buttons, a glowing focus ring, and a one-click toggle.
 
-这是一个**纯宿主侧的 DSH 插件**，只给网页端换肤，不改动任何核心逻辑。配色取自四部作品：进击的巨人（调查兵团猩红 + 自由之翼徽记 + 背景里缓缓走过的巨人剪影）、死神（墨黑底 + 骨白字 + 灵压橙 + 四角卍解标记）、Re:Zero（爱蜜莉雅紫水晶 + 蕾姆湛蓝）、紫罗兰永恒花园（青绿 / 金 / 祖母绿点缀 + 电影感暗角）。此外还统一了全站字体、加入朽木白哉式的千本樱花瓣、渐变滚动条与按钮、发光焦点环，以及一键开关。
+![preview](docs/preview.png)
+
+这是一个**纯宿主侧的 DSH 插件**，只给网页端换肤，不改动任何核心逻辑。配色取自四部作品：进击的巨人（调查兵团猩红 + 自由之翼徽记 + 背景里行走的巨人剪影：超大型 / 铠之 / 车力）、死神（墨黑底 + 骨白字 + 灵压橙 + 四角卍解标记）、Re:Zero（爱蜜莉雅紫水晶 + 蕾姆湛蓝）、紫罗兰永恒花园（青绿 / 金 / 祖母绿点缀 + 电影感暗角 + 角落的**人物海报**：金色发辫、祖母绿胸针、手持信笺，还有随风飘过的**信笺**与古典**衬线标题**）。此外还统一了全站字体、加入朽木白哉式的千本樱花瓣、渐变滚动条与按钮、发光焦点环，以及一键开关。
 
 ## Features · 效果
 
@@ -40,10 +42,12 @@ It also unifies the typeface across the entire UI, adds drifting **senbonzakura 
 | --- | --- | --- |
 | 🎨 Palette | Deepened dark base + crimson→amethyst→azure→teal gradient | 加深的暗色底 + 猩红→紫水晶→湛蓝→青绿渐变 |
 | 🪽 Emblem | Breathing Wings-of-Freedom mark, bottom-right | 右下角会呼吸的自由之翼徽记 |
-|  Titans | Attack / Armored / Cart Titan silhouettes marching in the background | 进击 / 铠之 / 车力巨人剪影在背景中行走 |
+|  Titans | Colossal / Armored / Cart Titan silhouettes marching in the background | 超大型 / 铠之 / 车力巨人剪影在背景中行走 |
 | 🌸 Petals | Senbonzakura-style scattering pink blades | 朽木白哉式飘散的千本樱花瓣 |
 | 卍 Corners | Bankai manji marks in all four corners | 四个角落的卍解标记 |
-| 🔤 Type | One unified font everywhere (code stays monospace) | 全站统一字体（代码区保留等宽） |
+| 🖼️ Poster | Framed Violet Evergarden portrait (original SVG) with gold frame | 角落的紫罗兰永恒花园人物海报（原创 SVG，金框） |
+| ✉️ Letters | Envelopes drifting across the screen on the wind | 随风飘过的信笺 |
+| 🔤 Type | Unified font everywhere, serif headings (code stays monospace) | 全站统一字体，标题用衬线（代码区保留等宽） |
 |  Depth | Ambient colour glows + cinematic vignette | 氛围光晕 + 电影感暗角 |
 | 🔘 Toggle | Bottom-left pill, preference persisted locally | 左下角胶囊开关，偏好本地持久化 |
 | ♿ A11y | Honours `prefers-reduced-motion` (no animation) | 尊重系统的「减少动态效果」设置 |

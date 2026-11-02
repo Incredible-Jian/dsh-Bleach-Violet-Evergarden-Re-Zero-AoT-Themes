@@ -122,12 +122,21 @@ html.dsh-anime body::after {
 .dsh-anime-titan {
   position: absolute;
   bottom: 0;
-  color: rgba(6, 9, 16, 0.62);
-  filter: drop-shadow(0 0 7px rgba(216, 58, 48, 0.4))
-    drop-shadow(0 0 16px rgba(138, 99, 210, 0.22));
+  /* solid colour + container opacity: overlapping limbs must not compound
+     into visible seams, so the element (not the paint) carries the alpha */
+  opacity: 0.5;
+  color: #04060c;
+  filter: drop-shadow(0 0 10px rgba(216, 58, 48, 0.38))
+    drop-shadow(0 0 26px rgba(74, 158, 255, 0.16));
   will-change: transform;
 }
 .dsh-anime-titan svg { display: block; height: 100%; width: auto; overflow: visible; }
+.dsh-anime-titan svg .limb {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .dsh-anime-titan.t-colossal { height: 54vh; animation: anime-march 70s linear infinite; }
 .dsh-anime-titan.t-armored { height: 42vh; animation: anime-march 90s linear infinite; animation-delay: -32s; }
 .dsh-anime-titan.t-cart { height: 21vh; animation: anime-march 54s linear infinite; animation-delay: -14s; }
@@ -358,7 +367,8 @@ html:not(.dsh-anime) #dsh-anime-toggle .dot {
 @media (prefers-reduced-motion: reduce) {
   #dsh-anime-emblem,
   .dsh-anime-petal,
-  .dsh-anime-titan {
+  .dsh-anime-titan,
+  .dsh-anime-letter {
     animation: none !important;
   }
   .dsh-anime-titan { opacity: 0.05; }
@@ -367,4 +377,111 @@ html:not(.dsh-anime) #dsh-anime-toggle .dot {
   #dsh-anime-toggle {
     transition: none !important;
   }
+}
+
+/* ===========================================================================
+   Violet Evergarden — poster, drifting letters, period serif headings
+   =========================================================================== */
+
+/* a serif voice for headings only, so the skin reads like a period drama */
+html.dsh-anime h1,
+html.dsh-anime h2,
+html.dsh-anime h3,
+html.dsh-anime [class*="title"],
+html.dsh-anime [class*="heading"] {
+  font-family: "Georgia", "Songti SC", "SimSun", serif !important;
+  letter-spacing: 0.01em;
+}
+
+/* framed portrait, bottom-right above the emblem */
+#dsh-anime-poster {
+  position: fixed;
+  right: 18px;
+  bottom: 162px;
+  z-index: 2147482000;
+  pointer-events: none;
+  opacity: 0.62;
+  transition: opacity 0.3s ease;
+}
+html:not(.dsh-anime) #dsh-anime-poster { display: none; }
+#dsh-anime-poster .dsh-poster-frame {
+  width: 126px;
+  padding: 6px 6px 4px;
+  border-radius: 10px;
+  background: linear-gradient(160deg, rgba(20, 28, 48, 0.94), rgba(10, 14, 26, 0.96));
+  border: 1px solid rgba(205, 163, 73, 0.55);
+  box-shadow: 0 12px 30px -14px rgba(0, 0, 0, 0.8),
+    0 0 0 3px rgba(205, 163, 73, 0.12),
+    0 0 22px -6px rgba(63, 174, 143, 0.35);
+  backdrop-filter: blur(6px);
+}
+#dsh-anime-poster .dsh-poster-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+#dsh-anime-poster .dsh-poster-cap {
+  display: grid;
+  justify-items: center;
+  gap: 1px;
+  padding: 5px 2px 3px;
+  text-align: center;
+  line-height: 1.15;
+}
+#dsh-anime-poster .dsh-poster-cap b {
+  font-family: "Georgia", "Songti SC", serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #f1ece2;
+}
+#dsh-anime-poster .dsh-poster-cap i {
+  font-family: "Georgia", "Songti SC", serif;
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: #cda349;
+}
+#dsh-anime-poster .dsh-poster-cap em {
+  font-size: 8px;
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(63, 174, 143, 0.9);
+}
+
+/* letters carried on the wind */
+#dsh-anime-letters {
+  position: fixed;
+  inset: 0;
+  z-index: 2147481300;
+  pointer-events: none;
+  overflow: hidden;
+}
+.dsh-anime-letter {
+  position: absolute;
+  left: -6vw;
+  background: linear-gradient(180deg, #fbf6e9, #e8dcc2);
+  border: 1px solid rgba(201, 162, 75, 0.75);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(201, 162, 75, 0.35);
+  transform: rotate(var(--lrot, 0deg));
+  animation-name: anime-letter-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+.dsh-anime-letter::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(35deg, transparent 48%, rgba(201, 162, 75, 0.55) 50%, transparent 52%),
+    linear-gradient(-35deg, transparent 48%, rgba(201, 162, 75, 0.55) 50%, transparent 52%);
+}
+@keyframes anime-letter-drift {
+  0% { opacity: 0; transform: translateX(0) rotate(var(--lrot, 0deg)); }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(114vw) rotate(calc(var(--lrot, 0deg) + 26deg)); }
 }

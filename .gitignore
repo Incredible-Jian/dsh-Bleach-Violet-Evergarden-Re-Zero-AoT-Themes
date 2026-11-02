@@ -13,3 +13,8 @@ node_modules/
 
 # Local DSH profile linkage — never commit the installed symlink target state
 *.local.json
+
+# Local preview render (root-level dev files only; docs/preview.png is kept)
+/preview*.png
+/preview*.html
+/shapes*.png
