@@ -1,0 +1,370 @@
+/* ===========================================================================
+   dsh-anime-theme — anime dark skin for DeepSeek Harness Web GUI
+   ---------------------------------------------------------------------------
+   A cinematic dark skin blending four series the owner watches:
+     · Attack on Titan  — Survey Corps crimson + the Wings of Freedom emblem
+                          + titan silhouettes drifting across the backdrop
+     · Bleach           — deep ink-black ground, bone-white text, spiritual
+                          orange, and the 卍 (manji) bankai corner marks
+     · Re:Zero          — Emilia amethyst & Rem azure in the brand gradient
+     · Violet Evergarden — teal / gold / emerald accents and a soft vignette
+   Everything lives under html.dsh-anime so the look is a clean, instant
+   toggle and never leaks into the default theme.
+   =========================================================================== */
+
+html.dsh-anime {
+  /* --- surfaces (deepened, more contrast) --- */
+  --dsw-alias-bg-base: #060912 !important;
+  --dsw-alias-bg-layer-1: #0c1120 !important;
+  --dsw-alias-bg-layer-2: #121a30 !important;
+  --dsw-alias-bg-overlay: rgba(10, 15, 28, 0.94) !important;
+  --dsw-specific-sidebar-fill: #080c16 !important;
+
+  /* --- lines --- */
+  --dsw-alias-border-l1: #1c2540 !important;
+  --dsw-alias-border-l2: #2b3758 !important;
+
+  /* --- brand / accents --- */
+  --dsw-alias-brand-primary: #d83a30 !important;
+
+  /* --- text (Bleach bone-white) --- */
+  --dsw-alias-label-primary: #f1ece2 !important;
+  --dsw-alias-label-secondary: #97a0bd !important;
+
+  /* --- states (Violet emerald/gold) --- */
+  --dsw-alias-state-error-primary: #ef4d4d !important;
+  --dsw-alias-state-idle-primary: #5e6a8a !important;
+  --dsw-alias-state-success-primary: #3fae8f !important;
+  --dsw-alias-state-warn-primary: #cda349 !important;
+
+  /* --- local helpers --- */
+  --anime-crimson: #d83a30;
+  --anime-amber: #e08a2f;
+  --anime-amethyst: #8a63d2;
+  --anime-azure: #4a9eff;
+  --anime-teal: #2f8f86;
+  --anime-gold: #cda349;
+  --anime-emerald: #3fae8f;
+  --anime-grad: linear-gradient(120deg, #d83a30 0%, #b14bd8 38%, #4a9eff 70%, #2f8f86 100%);
+  --anime-ink: #f1ece2;
+  --anime-font: "Yu Gothic UI", "Hiragino Sans", "Microsoft YaHei", "Segoe UI",
+    system-ui, -apple-system, sans-serif;
+  --anime-mono: "Cascadia Code", "JetBrains Mono", "Fira Code", Consolas, monospace;
+}
+
+/* ---- unified typography across the whole UI ---------------------------- */
+html.dsh-anime,
+html.dsh-anime body {
+  background: #060912;
+  color: var(--anime-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+html.dsh-anime *,
+html.dsh-anime *::before,
+html.dsh-anime *::after {
+  font-family: var(--anime-font) !important;
+}
+html.dsh-anime pre,
+html.dsh-anime code,
+html.dsh-anime kbd,
+html.dsh-anime samp,
+html.dsh-anime [class*="highlight"],
+html.dsh-anime [class*="CodeMirror"],
+html.dsh-anime [class*="prism"],
+html.dsh-anime [class*="monaco"] {
+  font-family: var(--anime-mono) !important;
+}
+
+/* ---- ambient colour glows (fixed, behind content, no click interception) */
+html.dsh-anime body::before,
+html.dsh-anime body::after {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(100px);
+}
+html.dsh-anime body::before {
+  width: 48vw;
+  height: 48vw;
+  top: -16vw;
+  left: -12vw;
+  opacity: 0.55;
+  background: radial-gradient(circle, rgba(216, 58, 48, 0.2), transparent 70%);
+}
+html.dsh-anime body::after {
+  width: 52vw;
+  height: 52vw;
+  bottom: -20vw;
+  right: -14vw;
+  opacity: 0.5;
+  background: radial-gradient(circle, rgba(138, 99, 210, 0.18), transparent 70%);
+}
+
+/* ---- cinematic vignette for depth -------------------------------------- */
+#dsh-anime-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 2147481000;
+  pointer-events: none;
+  background: radial-gradient(120% 120% at 50% 42%, transparent 58%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+/* ---- drifting titan silhouettes (the backdrop) ------------------------- */
+#dsh-anime-titans {
+  position: fixed;
+  inset: 0;
+  z-index: 2147481200;
+  pointer-events: none;
+  overflow: hidden;
+}
+.dsh-anime-titan {
+  position: absolute;
+  bottom: 0;
+  color: rgba(6, 9, 16, 0.62);
+  filter: drop-shadow(0 0 7px rgba(216, 58, 48, 0.4))
+    drop-shadow(0 0 16px rgba(138, 99, 210, 0.22));
+  will-change: transform;
+}
+.dsh-anime-titan svg { display: block; height: 100%; width: auto; overflow: visible; }
+.dsh-anime-titan.t-colossal { height: 54vh; animation: anime-march 70s linear infinite; }
+.dsh-anime-titan.t-armored { height: 42vh; animation: anime-march 90s linear infinite; animation-delay: -32s; }
+.dsh-anime-titan.t-cart { height: 21vh; animation: anime-march 54s linear infinite; animation-delay: -14s; }
+
+/* steam rising off the Colossal Titan */
+.dsh-anime-titan .steam {
+  fill: rgba(214, 222, 236, 0.5);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: anime-steam 5s ease-in-out infinite;
+}
+.dsh-anime-titan .steam.s2 { animation-delay: -1.6s; }
+.dsh-anime-titan .steam.s3 { animation-delay: -3.2s; }
+@keyframes anime-steam {
+  0% { opacity: 0; transform: translateY(6px) scaleX(0.8); }
+  40% { opacity: 0.5; }
+  100% { opacity: 0; transform: translateY(-16px) scaleX(1.3); }
+}
+
+/* glowing eyes of the Armored Titan */
+.dsh-anime-titan .eye {
+  fill: #ff5a3c;
+  filter: drop-shadow(0 0 4px #ff5a3c);
+}
+
+@keyframes anime-march {
+  0% { transform: translateX(-26vw) scaleX(1); }
+  49% { transform: translateX(60vw) scaleX(1); }
+  50% { transform: translateX(60vw) scaleX(-1); }
+  99% { transform: translateX(-26vw) scaleX(-1); }
+  100% { transform: translateX(-26vw) scaleX(1); }
+}
+
+/* ---- senbonzakura petals (Byakuya-style scattering blades) ------------- */
+#dsh-anime-petals {
+  position: fixed;
+  inset: 0;
+  z-index: 2147481400;
+  pointer-events: none;
+  overflow: hidden;
+}
+.dsh-anime-petal {
+  position: absolute;
+  top: -6vh;
+  width: 7px;
+  height: 17px;
+  background: linear-gradient(150deg, #ffe3ee 0%, #ff9ec4 45%, #e85fa0 100%);
+  border-radius: 92% 8% 92% 8%;
+  box-shadow: 0 0 6px rgba(255, 150, 196, 0.5);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-name: anime-scatter;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes anime-scatter {
+  0% { opacity: 0; transform: translate(0, -6vh) rotate(0deg); }
+  8% { opacity: 0.85; }
+  50% { transform: translate(var(--drift, 30px), 50vh) rotate(220deg); }
+  92% { opacity: 0.7; }
+  100% { opacity: 0; transform: translate(calc(var(--drift, 30px) * -0.6), 108vh) rotate(440deg); }
+}
+
+/* ---- 卍 bankai corner marks -------------------------------------------- */
+.dsh-anime-corner {
+  position: fixed;
+  z-index: 2147481600;
+  pointer-events: none;
+  font-size: 22px;
+  line-height: 1;
+  color: transparent;
+  background: var(--anime-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.22;
+  text-shadow: 0 0 12px rgba(216, 58, 48, 0.35);
+  font-weight: 700;
+}
+.dsh-anime-corner.tl { top: 10px; left: 12px; }
+.dsh-anime-corner.tr { top: 10px; right: 12px; transform: scaleX(-1); }
+.dsh-anime-corner.bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+.dsh-anime-corner.br { bottom: 12px; right: 12px; transform: scale(-1, -1); }
+
+/* ---- Wings-of-Freedom emblem, bottom-right ----------------------------- */
+#dsh-anime-emblem {
+  position: fixed;
+  right: 20px;
+  bottom: 52px;
+  width: 96px;
+  height: 96px;
+  z-index: 2147482500;
+  pointer-events: none;
+  opacity: 0.26;
+  color: #e9eefc;
+  filter: drop-shadow(0 0 12px rgba(216, 58, 48, 0.45))
+    drop-shadow(0 0 22px rgba(138, 99, 210, 0.3));
+  animation: anime-breathe 6.5s ease-in-out infinite;
+}
+@keyframes anime-breathe {
+  0%, 100% { opacity: 0.2; transform: translateY(0) scale(1); }
+  50% { opacity: 0.32; transform: translateY(-5px) scale(1.04); }
+}
+
+/* ---- panels / cards / popovers: softer rounding + faint edge glow ------ */
+html.dsh-anime [class*="card"],
+html.dsh-anime [class*="panel"],
+html.dsh-anime [class*="popover"],
+html.dsh-anime [class*="menu"],
+html.dsh-anime [class*="dialog"],
+html.dsh-anime [class*="sheet"] {
+  border-radius: 16px;
+  border-color: var(--dsw-alias-border-l1);
+  box-shadow: 0 14px 38px -16px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(138, 99, 210, 0.06);
+}
+
+/* ---- primary buttons: gradient fill + warm hover ----------------------- */
+html.dsh-anime button[class*="primary"],
+html.dsh-anime [class*="button-primary"],
+html.dsh-anime .ops-settings button.ops-settings-primary {
+  background: var(--anime-grad) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 8px 22px -8px rgba(216, 58, 48, 0.55);
+  transition: transform 0.16s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+html.dsh-anime button[class*="primary"]:hover:not(:disabled),
+html.dsh-anime [class*="button-primary"]:hover:not(:disabled) {
+  filter: brightness(1.08) saturate(1.12);
+  box-shadow: 0 10px 28px -8px rgba(177, 75, 216, 0.6);
+  transform: translateY(-1px);
+}
+
+/* ---- focus rings: glowing brand halo ----------------------------------- */
+html.dsh-anime :focus-visible {
+  outline: 2px solid var(--anime-amethyst) !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(138, 99, 210, 0.2);
+}
+
+/* ---- composer: a thin gradient seam along the top edge ----------------- */
+html.dsh-anime [data-composer-card],
+html.dsh-anime [data-composer-seat] {
+  position: relative;
+}
+html.dsh-anime [data-composer-card]::before,
+html.dsh-anime [data-composer-seat]::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--anime-grad);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* ---- sidebar accent rail ----------------------------------------------- */
+html.dsh-anime aside,
+html.dsh-anime [class*="sidebar"] {
+  border-inline-end: 1px solid var(--dsw-alias-border-l1);
+}
+
+/* ---- scrollbars: slim, gradient thumb ---------------------------------- */
+html.dsh-anime * {
+  scrollbar-width: thin;
+  scrollbar-color: #5a3a6e #080c16;
+}
+html.dsh-anime *::-webkit-scrollbar { width: 10px; height: 10px; }
+html.dsh-anime *::-webkit-scrollbar-track { background: transparent; }
+html.dsh-anime *::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d83a30, #8a63d2);
+  border-radius: 999px;
+  border: 2px solid #080c16;
+}
+html.dsh-anime *::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ef5a4d, #a079e6);
+}
+
+/* ---- selection --------------------------------------------------------- */
+html.dsh-anime ::selection {
+  background: rgba(216, 58, 48, 0.38);
+  color: #fff;
+}
+
+/* ---- theme toggle pill, bottom-left ------------------------------------ */
+#dsh-anime-toggle {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 2147483000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px 8px 11px;
+  border: 1px solid rgba(138, 99, 210, 0.5);
+  border-radius: 999px;
+  background: rgba(8, 12, 22, 0.85);
+  backdrop-filter: blur(9px);
+  color: #f1ece2;
+  font: 600 12px/1 var(--anime-font);
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 10px 26px -12px rgba(0, 0, 0, 0.8),
+    0 0 16px -4px rgba(216, 58, 48, 0.45);
+  transition: transform 0.16s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  user-select: none;
+}
+#dsh-anime-toggle:hover {
+  transform: translateY(-2px);
+  border-color: rgba(216, 58, 48, 0.75);
+  box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.85),
+    0 0 20px -3px rgba(177, 75, 216, 0.6);
+}
+#dsh-anime-toggle .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--anime-grad);
+  box-shadow: 0 0 9px rgba(216, 58, 48, 0.85);
+}
+html:not(.dsh-anime) #dsh-anime-toggle .dot {
+  background: #5e6a8a;
+  box-shadow: none;
+}
+
+/* ---- honour reduced-motion preferences --------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  #dsh-anime-emblem,
+  .dsh-anime-petal,
+  .dsh-anime-titan {
+    animation: none !important;
+  }
+  .dsh-anime-titan { opacity: 0.05; }
+  html.dsh-anime button[class*="primary"],
+  html.dsh-anime [class*="button-primary"],
+  #dsh-anime-toggle {
+    transition: none !important;
+  }
+}

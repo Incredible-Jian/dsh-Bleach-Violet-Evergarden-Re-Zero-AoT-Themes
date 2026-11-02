@@ -1,0 +1,15 @@
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+
+# Node
+node_modules/
+
+# Local DSH profile linkage — never commit the installed symlink target state
+*.local.json

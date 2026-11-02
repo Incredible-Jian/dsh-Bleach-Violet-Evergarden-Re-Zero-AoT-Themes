@@ -1,0 +1,7 @@
+# dsh-anime-theme — DSH bundle patch
+# Mounts the anime dark skin into the profile. The host half injects the
+# stylesheet and decorations into the served Web GUI (desktop via the
+# structured index-inject channel, plain web via tapIndex).
+- insert:
+    - id: dsh-anime-theme
+      name: dsh-anime-theme

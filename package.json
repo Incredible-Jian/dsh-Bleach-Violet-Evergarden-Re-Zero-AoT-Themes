@@ -1,0 +1,48 @@
+{
+  "name": "dsh-anime-theme",
+  "version": "1.0.0",
+  "description": "A cinematic anime dark skin for the DeepSeek Harness (DSH) Web GUI — Attack on Titan, Bleach, Re:Zero and Violet Evergarden palette, marching titan silhouettes, senbonzakura petals, 卍 bankai corner marks, a Wings-of-Freedom emblem and a one-click toggle.",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "icon": "./icon.svg",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "theme",
+    "skin",
+    "anime",
+    "attack-on-titan",
+    "bleach",
+    "rezero",
+    "violet-evergarden"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Incredible-Jian/dsh-Bleach-Violet-Evergarden-Re-Zero-AoT-Themes.git"
+  },
+  "homepage": "https://github.com/Incredible-Jian/dsh-Bleach-Violet-Evergarden-Re-Zero-AoT-Themes#readme",
+  "bugs": {
+    "url": "https://github.com/Incredible-Jian/dsh-Bleach-Violet-Evergarden-Re-Zero-AoT-Themes/issues"
+  },
+  "author": "Incredible-Jian",
+  "files": [
+    "index.js",
+    "theme.css",
+    "theme.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "locale",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "dsh": ">=0.2.0-rc.2 <0.2.2-0"
+  }
+}
