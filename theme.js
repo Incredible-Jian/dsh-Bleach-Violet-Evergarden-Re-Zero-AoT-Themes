@@ -274,71 +274,20 @@
   }
 
   // Paint the wallpaper onto the full-viewport shell wrappers themselves.
-  // Guessing the exact container class proved unreliable, so instead any
-  // element that covers the viewport (and is not a content surface) gets the
-  // picture as its own background — the picture then cannot be "covered".
+  // NOTE: removed — it painted the picture behind translucent panels and made
+  // white text unreadable. The skin is decoration-only now.
   function paintShell() {
-    try {
-      var paint = 'linear-gradient(180deg, rgba(6,9,18,.72) 0%, rgba(6,9,18,.42) 46%, ' +
-        'rgba(6,9,18,.86) 100%), var(--dsh-anime-bg, none)'
-      var levels = [document.body]
-      for (var depth = 0; depth < 3; depth++) {
-        var next = []
-        for (var i = 0; i < levels.length; i++) {
-          var kids = levels[i].children || []
-          for (var k = 0; k < kids.length; k++) next.push(kids[k])
-        }
-        levels = next
-        for (var j = 0; j < levels.length; j++) {
-          var el = levels[j]
-          var cls = (el.className && String(el.className)) || ''
-          if (/card|panel|sidebar|conversation|chat|composer|message|menu|dialog/i.test(cls)) continue
-          var rect = el.getBoundingClientRect()
-          if (rect.width < window.innerWidth * 0.5 || rect.height < window.innerHeight * 0.5) continue
-          el.style.setProperty('background-image', paint, 'important')
-          el.style.setProperty('background-size', 'cover', 'important')
-          el.style.setProperty('background-position', 'center 26%', 'important')
-          el.style.setProperty('background-repeat', 'no-repeat', 'important')
-          el.style.setProperty('background-attachment', 'fixed', 'important')
-        }
-      }
-    } catch (e) {}
+    return
   }
 
   function clearShell() {
-    try {
-      var levels = [document.body]
-      for (var depth = 0; depth < 3; depth++) {
-        var next = []
-        for (var i = 0; i < levels.length; i++) {
-          var kids = levels[i].children || []
-          for (var k = 0; k < kids.length; k++) next.push(kids[k])
-        }
-        levels = next
-        for (var j = 0; j < levels.length; j++) {
-          var el = levels[j]
-          var cls = (el.className && String(el.className)) || ''
-          // never strip a real content surface: only shell wrappers
-          if (/card|panel|sidebar|conversation|chat|composer|message|menu|dialog/i.test(cls)) continue
-          var rect = el.getBoundingClientRect()
-          if (rect.width < window.innerWidth * 0.5 || rect.height < window.innerHeight * 0.5) continue
-          var style = getComputedStyle(el)
-          el.style.setProperty('background-color', 'transparent', 'important')
-          if (style.backgroundImage !== 'none') {
-            el.style.setProperty('background-image', 'none', 'important')
-          }
-        }
-      }
-    } catch (e) {}
+    return
   }
 
   function start() {
     try {
       buildDecor()
       setVariant()
-      paintShell()
-      setTimeout(paintShell, 800)
-      setTimeout(paintShell, 2500)
     } catch (e) {}
   }
 
