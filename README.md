@@ -21,16 +21,18 @@ A cinematic dark skin for [DeepSeek Harness (DSH)](https://github.com/deepseek-a
 - **Re:Zero** — Emilia's amethyst and Rem's azure in the brand gradient.
 - **Violet Evergarden** — teal / gold / emerald accents, a framed portrait poster, letters drifting on the wind, serif headings.
 - Glass panels, gradient top hairline, ink-wash sidebar with a crimson active rail, unified typography.
-- Optional wallpaper behind a dark wash, one-click toggle, honours `prefers-reduced-motion`.
+- Optional wallpaper and portrait behind a dark wash, honours `prefers-reduced-motion`.
+- **Two variants**: 夜 (dark) and 昼 (light, warm paper + ink) — click the DSH wordmark to switch, the choice is remembered.
 
 <br>
 
 - **进击的巨人** — 调查兵团猩红 `#d83a30`、自由之翼徽记，以及横穿底部的超大型 / 铠之 / 车力巨人幽灵剪影。
-- **死神** — 墨黑底、骨白字、灵压橙、四角卍解标记，以及左上角「卍解」字标。
+- **死神** — 墨黑底、骨白字、灵压橙、四角卍解标记，以及左下角「深 DSH」字标。
 - **Re:Zero** — 爱蜜莉雅紫水晶与蕾姆湛蓝，融进品牌渐变。
 - **紫罗兰永恒花园** — 青绿 / 金 / 祖母绿点缀、金框人物海报、随风飘过的信笺、衬线标题。
 - 玻璃面板、顶部渐变细线、水墨侧栏与猩红选中条、全站统一字体。
-- 可换壁纸（暗色蒙层之下）、一键开关、尊重「减少动态效果」设置。
+- 可换壁纸与人物图（暗色蒙层之下）、尊重「减少动态效果」设置。
+- **两套变体**：夜（深色）与昼（浅色，暖纸 + 墨字），点左下角 DSH 字标即可切换，选择会被记住。
 
 ![preview](docs/preview.png)
 
@@ -77,13 +79,13 @@ dsh plugin --profile desktop add link:/absolute/path/to/dsh-anime-theme
 ## Usage
 
 - The theme is on by default once installed.
-- Use the 「二次元主题 · 开/关」 pill at the bottom-left to toggle it; the choice is stored in `localStorage` and survives reloads.
-- To remove it, disable or uninstall the `dsh-anime-theme` row in the Plugins page.
+- Click the **深 DSH** wordmark at the bottom-left to switch between **夜 (dark)** and **昼 (light)**; the chip shows the current one and the choice is stored in `localStorage`.
+- To remove the skin, disable or uninstall the `dsh-anime-theme` row in the Plugins page.
 
 <br>
 
 - 安装后主题默认开启。
-- 点左下角「二次元主题 · 开/关」胶囊即可切换，选择保存在 `localStorage`，刷新后仍保持。
+- 点左下角 **深 DSH** 字标即可在 **夜（深色）** 与 **昼（浅色）** 之间切换，旁边的小圆章会显示当前模式，选择保存在 `localStorage`。
 - 想彻底移除：在插件页禁用或卸载 `dsh-anime-theme` 这一行。
 
 ---
@@ -124,15 +126,17 @@ cp ~/Pictures/my-wallpaper.jpg <path-to-plugin>/assets/background.jpg
 
 `assets/background.jpg` is git-ignored, so a private wallpaper is never published with the repo.
 
+The framed poster works the same way: drop a square portrait in as `assets/poster.jpg` and it replaces the drawn Violet SVG.
+
 <br>
 
-插件自带一张原创的黑白「灵压」壁纸。想换成自己的图，把图片保存为 `assets/background.jpg` 再重启 DSH 即可：启动时读取、内联为 data URI，并压上暗色蒙层。
+插件自带一张原创的黑白「灵压」壁纸。想换成自己的图，把图片保存为 `assets/background.jpg` 再重启 DSH 即可：启动时读取、内联为 data URI，并压上暗色蒙层。右下角的人物海报同理——把方形人像存成 `assets/poster.jpg`，就会替换掉内置的手绘 SVG。
 
 ```console
 cp ~/Pictures/my-wallpaper.jpg <插件目录>/assets/background.jpg
 ```
 
-`assets/background.jpg` 已加入 `.gitignore`，个人壁纸不会随仓库发布。
+`assets/background.jpg` 与 `assets/poster.jpg` 都已加入 `.gitignore`，个人壁纸与人像不会随仓库发布。
 
 ---
 

@@ -20,12 +20,25 @@
     return true // default on while the plugin is installed
   }
 
-  var toggle
-  function apply(on) {
-    root.classList.toggle('dsh-anime', on)
-    var label = toggle && toggle.querySelector('.txt')
-    if (label) label.textContent = on ? '二次元主题 · 开' : '二次元主题 · 关'
-    try { localStorage.setItem(STORAGE_KEY, on ? '1' : '0') } catch (e) {}
+  var VARIANT_KEY = 'dsh-anime-variant'
+  var logo
+
+  function savedVariant() {
+    try {
+      var v = localStorage.getItem(VARIANT_KEY)
+      if (v === 'light' || v === 'dark') return v
+    } catch (e) {}
+    return 'dark'
+  }
+
+  // The skin is always on while the plugin is enabled; the wordmark switches
+  // between the dark (夜) and light (昼) palettes instead of turning it off.
+  function setVariant(variant) {
+    root.classList.add('dsh-anime')
+    root.classList.toggle('anime-light', variant === 'light')
+    var tag = logo && logo.querySelector('.mode')
+    if (tag) tag.textContent = variant === 'light' ? '昼' : '夜'
+    try { localStorage.setItem(VARIANT_KEY, variant) } catch (e) {}
   }
 
   /* ---- titan strip (painted as the body background) ---------------------
@@ -168,13 +181,18 @@
     topline.setAttribute('aria-hidden', 'true')
     document.body.appendChild(topline)
 
-    /* Bleach-style wordmark in the top-left corner */
-    var logo = document.createElement('div')
+    /* DSH wordmark at the bottom-left; click it to switch 夜 / 昼 */
+    logo = document.createElement('button')
     logo.id = 'dsh-anime-logo'
-    logo.setAttribute('aria-hidden', 'true')
+    logo.type = 'button'
+    logo.title = '切换 夜（深色）/ 昼（浅色）主题'
     logo.innerHTML = '<span class="seal">深</span>' +
       '<span class="cn">DSH</span>' +
-      '<span class="en">ディーエスエイチ</span>'
+      '<span class="en">ディーエスエイチ</span>' +
+      '<span class="mode">夜</span>'
+    logo.addEventListener('click', function () {
+      setVariant(root.classList.contains('anime-light') ? 'dark' : 'light')
+    })
     document.body.appendChild(logo)
 
     /* titan ghosts: two copies of the strip form a seamless scrolling track */
@@ -224,7 +242,25 @@
     /* Violet Evergarden poster, bottom-right (above the emblem) */
     var poster = document.createElement('div')
     poster.innerHTML = POSTER
-    document.body.appendChild(poster.firstChild)
+    var posterEl = poster.firstChild
+    document.body.appendChild(posterEl)
+
+    /* a personal portrait (assets/poster.jpg) wins over the drawn SVG */
+    try {
+      var frame = posterEl.querySelector('.dsh-poster-frame')
+      var value = getComputedStyle(document.documentElement)
+        .getPropertyValue('--dsh-anime-poster').trim()
+      if (frame && value && value.indexOf('url(') === 0) {
+        var src = value.slice(4, -1).replace(/^["']|["']$/g, '')
+        var img = document.createElement('img')
+        img.className = 'dsh-poster-photo'
+        img.src = src
+        img.alt = 'Violet Evergarden'
+        var art = frame.querySelector('.dsh-poster-art')
+        if (art) art.style.display = 'none'
+        frame.insertBefore(img, frame.firstChild)
+      }
+    } catch (e) {}
 
     /* letters drifting on the wind */
     if (!prefersReduced) {
@@ -248,25 +284,10 @@
     }
   }
 
-  function buildToggle() {
-    if (document.getElementById('dsh-anime-toggle')) return
-    toggle = document.createElement('button')
-    toggle.id = 'dsh-anime-toggle'
-    toggle.type = 'button'
-    toggle.setAttribute('aria-label', '切换二次元主题')
-    toggle.title = '切换二次元主题（进击的巨人 / 死神 / Re:Zero / 紫罗兰永恒花园）'
-    toggle.innerHTML = '<span class="dot"></span><span class="txt"></span>'
-    toggle.addEventListener('click', function () {
-      apply(!root.classList.contains('dsh-anime'))
-    })
-    document.body.appendChild(toggle)
-  }
-
   function start() {
     try {
       buildDecor()
-      buildToggle()
-      apply(enabled())
+      setVariant(savedVariant())
     } catch (e) {}
   }
 

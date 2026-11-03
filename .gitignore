@@ -22,3 +22,5 @@ node_modules/
 # Personal wallpaper is never published: drop your own image here instead
 /assets/background.jpg
 /assets/background-local*
+/assets/poster.jpg
+/assets/poster-local*

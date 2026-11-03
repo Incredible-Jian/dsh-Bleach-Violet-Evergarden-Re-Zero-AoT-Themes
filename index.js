@@ -41,13 +41,26 @@ function backgroundCss() {
   )
 }
 
+// Optional personal portrait for the framed poster: assets/poster.jpg is also
+// git-ignored, so a private picture never ships with the repo.
+function posterCss() {
+  try {
+    const file = path.join(PACKAGE_ROOT, 'assets', 'poster.jpg')
+    if (fs.existsSync(file)) {
+      const base64 = fs.readFileSync(file).toString('base64')
+      return ':root{--dsh-anime-poster:url("data:image/jpeg;base64,' + base64 + '")}'
+    }
+  } catch (_) {}
+  return ''
+}
+
 // Build one self-contained inline script: it paints the dark base immediately
 // (to limit the flash before the class lands), injects the stylesheet, then
 // runs the decoration/toggle logic. Everything is gated behind a guard flag
 // inside theme.js, so running twice (web tapIndex + desktop index-inject) is
 // harmless.
 function buildInlineScript() {
-  const css = readAsset('theme.css') + '\n' + backgroundCss()
+  const css = readAsset('theme.css') + '\n' + backgroundCss() + posterCss()
   const js = readAsset('theme.js')
   return (
     '(function(){try{' +
