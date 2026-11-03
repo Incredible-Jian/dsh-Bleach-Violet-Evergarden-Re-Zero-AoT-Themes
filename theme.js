@@ -20,25 +20,10 @@
     return true // default on while the plugin is installed
   }
 
-  var VARIANT_KEY = 'dsh-anime-variant'
-  var logo
-
-  function savedVariant() {
-    try {
-      var v = localStorage.getItem(VARIANT_KEY)
-      if (v === 'light' || v === 'dark') return v
-    } catch (e) {}
-    return 'dark'
-  }
-
-  // The skin is always on while the plugin is enabled; the wordmark switches
-  // between the dark (夜) and light (昼) palettes instead of turning it off.
-  function setVariant(variant) {
+  // One single dark look: no variants, nothing to click.
+  function setVariant() {
     root.classList.add('dsh-anime')
-    root.classList.toggle('anime-light', variant === 'light')
-    var tag = logo && logo.querySelector('.mode')
-    if (tag) tag.textContent = variant === 'light' ? '昼' : '夜'
-    try { localStorage.setItem(VARIANT_KEY, variant) } catch (e) {}
+    root.classList.remove('anime-light')
   }
 
   /* ---- titan strip (painted as the body background) ---------------------
@@ -190,18 +175,13 @@
     topline.setAttribute('aria-hidden', 'true')
     document.body.appendChild(topline)
 
-    /* DSH wordmark at the bottom-left; click it to switch 夜 / 昼 */
-    logo = document.createElement('button')
+    /* decorative DSH wordmark, centred at the top */
+    var logo = document.createElement('div')
     logo.id = 'dsh-anime-logo'
-    logo.type = 'button'
-    logo.title = '切换 夜（深色）/ 昼（浅色）主题'
+    logo.setAttribute('aria-hidden', 'true')
     logo.innerHTML = '<span class="seal">深</span>' +
       '<span class="cn">DSH</span>' +
-      '<span class="en">ディーエスエイチ</span>' +
-      '<span class="mode">夜</span>'
-    logo.addEventListener('click', function () {
-      setVariant(root.classList.contains('anime-light') ? 'dark' : 'light')
-    })
+      '<span class="en">ディーエスエイチ</span>'
     document.body.appendChild(logo)
 
     /* titan ghosts: two copies of the strip form a seamless scrolling track */
@@ -293,10 +273,44 @@
     }
   }
 
+  // DSH paints its own opaque shell somewhere between <body> and the columns;
+  // walk the first few levels and punch it out so the picture shows through.
+  function clearShell() {
+    try {
+      var levels = [document.body]
+      for (var depth = 0; depth < 3; depth++) {
+        var next = []
+        for (var i = 0; i < levels.length; i++) {
+          var kids = levels[i].children || []
+          for (var k = 0; k < kids.length; k++) next.push(kids[k])
+        }
+        levels = next
+        for (var j = 0; j < levels.length; j++) {
+          var el = levels[j]
+          var cls = (el.className && String(el.className)) || ''
+          // never strip a real content surface: only shell wrappers
+          if (/card|panel|sidebar|conversation|chat|composer|message|menu|dialog/i.test(cls)) continue
+          var rect = el.getBoundingClientRect()
+          if (rect.width < window.innerWidth * 0.5 || rect.height < window.innerHeight * 0.5) continue
+          var style = getComputedStyle(el)
+          el.style.setProperty('background-color', 'transparent', 'important')
+          if (style.backgroundImage !== 'none') {
+            el.style.setProperty('background-image', 'none', 'important')
+          }
+        }
+      }
+    } catch (e) {}
+  }
+
   function start() {
     try {
       buildDecor()
-      setVariant(savedVariant())
+      setVariant()
+      clearShell()
+      // the shell renders late, so retry a couple of times
+      setTimeout(clearShell, 600)
+      setTimeout(clearShell, 2000)
+      setTimeout(clearShell, 5000)
     } catch (e) {}
   }
 

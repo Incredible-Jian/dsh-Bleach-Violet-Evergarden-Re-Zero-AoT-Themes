@@ -12,7 +12,8 @@
    toggle and never leaks into the default theme.
    =========================================================================== */
 
-html.dsh-anime {
+html.dsh-anime,
+html.dsh-anime body {
   /* --- surfaces: translucent so the titan backdrop and the ambient glows
          read *through* the panels while the text stays perfectly legible --- */
   --dsw-alias-bg-base: #060912 !important;
@@ -538,15 +539,9 @@ html:not(.dsh-anime) #dsh-anime-poster { display: none; }
   border-radius: 999px;
   background: rgba(8, 12, 22, 0.6);
   backdrop-filter: blur(8px);
-  cursor: pointer;
+  pointer-events: none;
   user-select: none;
-  opacity: 0.75;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-}
-#dsh-anime-logo:hover {
-  opacity: 1;
-  border-color: rgba(216, 58, 48, 0.7);
-  box-shadow: 0 0 16px -4px rgba(216, 58, 48, 0.5);
+  opacity: 0.8;
 }
 @media (prefers-reduced-motion: reduce) {
   #dsh-anime-logo { transition: none; }
