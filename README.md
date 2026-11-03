@@ -42,7 +42,7 @@ It also unifies the typeface across the entire UI, adds drifting **senbonzakura 
 | --- | --- | --- |
 | 🎨 Palette | Deepened dark base + crimson→amethyst→azure→teal gradient | 加深的暗色底 + 猩红→紫水晶→湛蓝→青绿渐变 |
 | 🪽 Emblem | Breathing Wings-of-Freedom mark, bottom-right | 右下角会呼吸的自由之翼徽记 |
-|  Titans | Colossal / Armored / Cart Titan silhouettes painted into the canvas background (behind all UI, never over text) and scrolled so they walk | 超大型 / 铠之 / 车力巨人剪影画在画布背景里（在所有界面之下，绝不遮住对话），横向滚动形成行走 |
+|  Titans | Colossal / Armored / Cart Titan ghost silhouettes (14% screen blend) drifting across the bottom — clearly visible, never dimming the text | 超大型 / 铠之 / 车力巨人以 14% 的浅色幽灵层横穿底部 —— 看得见，又不会压暗正文 |
 | 🌸 Petals | Senbonzakura-style scattering pink blades | 朽木白哉式飘散的千本樱花瓣 |
 | 卍 Corners | Bankai manji marks in all four corners | 四个角落的卍解标记 |
 | 🖼️ Poster | Framed Violet Evergarden portrait (original SVG) with gold frame | 角落的紫罗兰永恒花园人物海报（原创 SVG，金框） |

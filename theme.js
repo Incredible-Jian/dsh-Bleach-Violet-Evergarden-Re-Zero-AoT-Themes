@@ -25,10 +25,6 @@
     root.classList.toggle('dsh-anime', on)
     var label = toggle && toggle.querySelector('.txt')
     if (label) label.textContent = on ? '二次元主题 · 开' : '二次元主题 · 关'
-    // the titan strip only exists while the skin is on
-    try {
-      document.body.style.backgroundImage = on ? TITAN_BACKGROUND : ''
-    } catch (e) {}
     try { localStorage.setItem(STORAGE_KEY, on ? '1' : '0') } catch (e) {}
   }
 
@@ -38,7 +34,7 @@
      three silhouettes; theme.css scrolls the background sideways so they
      read as walking. Round-capped limb strokes keep the anatomy organic. */
 
-  var TITAN_PAINT = "#0a1120"
+  var TITAN_PAINT = 'currentColor'
 
   function titanGroup(translate, inner) {
     return (
@@ -96,9 +92,6 @@
     titanGroup('760 80', ARMORED) +
     titanGroup('1400 240', CART) +
     '</svg>'
-
-  var TITAN_BACKGROUND = 'url("data:image/svg+xml;charset=utf-8,' +
-    encodeURIComponent(TITAN_STRIP) + '")'
 
   /* ---- Wings of Freedom emblem ----------------------------------------- */
   var EMBLEM =
@@ -169,8 +162,21 @@
     vignette.id = 'dsh-anime-vignette'
     document.body.appendChild(vignette)
 
-    /* the titans are the body background (see TITAN_BACKGROUND), so there is
-       no DOM layer for them — nothing can sit on top of the conversation */
+    /* gradient hairline across the very top of the window */
+    var topline = document.createElement('div')
+    topline.id = 'dsh-anime-topline'
+    topline.setAttribute('aria-hidden', 'true')
+    document.body.appendChild(topline)
+
+    /* titan ghosts: two copies of the strip form a seamless scrolling track */
+    var titans = document.createElement('div')
+    titans.id = 'dsh-anime-titans'
+    titans.setAttribute('aria-hidden', 'true')
+    var track = document.createElement('div')
+    track.className = 'track'
+    track.innerHTML = TITAN_STRIP + TITAN_STRIP
+    titans.appendChild(track)
+    document.body.appendChild(titans)
 
     /* senbonzakura petals */
     if (!prefersReduced) {

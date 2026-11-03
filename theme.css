@@ -13,12 +13,13 @@
    =========================================================================== */
 
 html.dsh-anime {
-  /* --- surfaces (deepened, more contrast) --- */
+  /* --- surfaces: translucent so the titan backdrop and the ambient glows
+         read *through* the panels while the text stays perfectly legible --- */
   --dsw-alias-bg-base: #060912 !important;
-  --dsw-alias-bg-layer-1: #0c1120 !important;
-  --dsw-alias-bg-layer-2: #121a30 !important;
-  --dsw-alias-bg-overlay: rgba(10, 15, 28, 0.94) !important;
-  --dsw-specific-sidebar-fill: #080c16 !important;
+  --dsw-alias-bg-layer-1: rgba(12, 17, 32, 0.74) !important;
+  --dsw-alias-bg-layer-2: rgba(18, 26, 48, 0.82) !important;
+  --dsw-alias-bg-overlay: rgba(10, 15, 28, 0.9) !important;
+  --dsw-specific-sidebar-fill: rgba(8, 12, 22, 0.8) !important;
 
   /* --- lines --- */
   --dsw-alias-border-l1: #1c2540 !important;
@@ -111,21 +112,38 @@ html.dsh-anime body::after {
   background: radial-gradient(120% 120% at 50% 42%, transparent 58%, rgba(0, 0, 0, 0.45) 100%);
 }
 
-/* ---- titans as a true canvas backdrop ----------------------------------
-   The silhouettes are painted as the *body background* (set from theme.js as
-   a data-URI strip) and the background is scrolled sideways, so they read as
-   titans walking across the far background while every bit of UI — chat text
-   included — paints on top of them. */
-html.dsh-anime #root { background: transparent !important; }
-html.dsh-anime body {
-  background-repeat: repeat-x;
-  background-position: 0 bottom;
-  background-size: 2400px 420px;
-  animation: anime-titan-stroll 140s linear infinite;
+/* ---- titan ghosts marching across the backdrop -------------------------
+   A very light, low-opacity silhouette layer above the UI: at ~13% the shapes
+   read clearly as titans walking in the distance, while text underneath is
+   only faintly tinted and stays fully readable. */
+#dsh-anime-titans {
+  position: fixed;
+  inset: auto 0 0 0;
+  height: 46vh;
+  z-index: 2147481300;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.14;
+  color: #93a9d6;
+  mix-blend-mode: screen;
+}
+html:not(.dsh-anime) #dsh-anime-titans { display: none; }
+#dsh-anime-titans .track {
+  display: flex;
+  height: 100%;
+  width: max-content;
+  animation: anime-titan-stroll 150s linear infinite;
+  will-change: transform;
+}
+#dsh-anime-titans .track svg {
+  display: block;
+  height: 100%;
+  width: auto;
+  flex: 0 0 auto;
 }
 @keyframes anime-titan-stroll {
-  from { background-position-x: 0; }
-  to { background-position-x: -2400px; }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* ---- senbonzakura petals (Byakuya-style scattering blades) ------------- */
@@ -198,18 +216,45 @@ html.dsh-anime body {
   50% { opacity: 0.32; transform: translateY(-5px) scale(1.04); }
 }
 
-/* ---- panels / cards / popovers: softer rounding + faint edge glow ------ */
+/* ---- panels / cards: glass surfaces + soft edge glow -------------------
+   No backdrop blur on the big structural panels: blurring the backdrop would
+   smear the titan silhouettes into an invisible haze. Only true floating
+   layers (popover/menu/dialog) get frosted, where legibility matters most. */
 html.dsh-anime [class*="card"],
 html.dsh-anime [class*="panel"],
 html.dsh-anime [class*="popover"],
 html.dsh-anime [class*="menu"],
 html.dsh-anime [class*="dialog"],
 html.dsh-anime [class*="sheet"] {
-  border-radius: 16px;
+  border-radius: 18px;
   border-color: var(--dsw-alias-border-l1);
-  box-shadow: 0 14px 38px -16px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(138, 99, 210, 0.06);
+  box-shadow: 0 18px 44px -20px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(138, 99, 210, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
+
+/* floating layers get frosted glass plus a slightly stronger fill */
+html.dsh-anime [class*="popover"],
+html.dsh-anime [class*="menu"],
+html.dsh-anime [class*="dialog"] {
+  background-color: var(--dsw-alias-bg-overlay);
+  backdrop-filter: blur(16px) saturate(1.15);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
+}
+
+/* ---- thin gradient hairline along the very top of the window ----------- */
+#dsh-anime-topline {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 2147482400;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #d83a30 12%, #b14bd8 42%,
+    #4a9eff 70%, #2f8f86 88%, transparent);
+  opacity: 0.55;
+}
+html:not(.dsh-anime) #dsh-anime-topline { display: none; }
 
 /* ---- primary buttons: gradient fill + warm hover ----------------------- */
 html.dsh-anime button[class*="primary"],
