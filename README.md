@@ -79,13 +79,13 @@ dsh plugin --profile desktop add link:/absolute/path/to/dsh-anime-theme
 ## Usage
 
 - The theme is on by default once installed.
-- Click the **深 DSH** wordmark at the top-right to switch between **夜 (dark)** and **昼 (light)**; the chip shows the current one and the choice is stored in `localStorage`.
+- Click the **深 DSH** wordmark at the top-centre to switch between **夜 (dark)** and **昼 (light)**; the chip shows the current one and the choice is stored in `localStorage`.
 - To remove the skin, disable or uninstall the `dsh-anime-theme` row in the Plugins page.
 
 <br>
 
 - 安装后主题默认开启。
-- 点右上角 **深 DSH** 字标即可在 **夜（深色）** 与 **昼（浅色）** 之间切换，旁边的小圆章会显示当前模式，选择保存在 `localStorage`。
+- 点正上方中间的 **深 DSH** 字标即可在 **夜（深色）** 与 **昼（浅色）** 之间切换，旁边的小圆章会显示当前模式，选择保存在 `localStorage`。
 - 想彻底移除：在插件页禁用或卸载 `dsh-anime-theme` 这一行。
 
 ---

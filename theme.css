@@ -62,19 +62,35 @@ html.dsh-anime body {
   text-rendering: optimizeLegibility;
 }
 
-/* ---- wallpaper: a monochrome reiatsu backdrop under a dark wash --------- */
-html.dsh-anime body {
+/* ---- wallpaper: a monochrome reiatsu backdrop under a dark wash ---------
+   Painted on <html> and the whole app shell is made transparent, so the
+   picture is actually visible behind the UI instead of being covered by an
+   opaque #root background. */
+html.dsh-anime {
+  background-color: #060912;
   background-image: linear-gradient(
       180deg,
-      rgba(6, 9, 18, 0.74) 0%,
-      rgba(6, 9, 18, 0.46) 46%,
-      rgba(6, 9, 18, 0.88) 100%
+      rgba(6, 9, 18, 0.7) 0%,
+      rgba(6, 9, 18, 0.38) 46%,
+      rgba(6, 9, 18, 0.86) 100%
     ),
     var(--dsh-anime-bg, none);
   background-size: cover, cover;
-  background-position: center, center 28%;
+  background-position: center, center 26%;
   background-repeat: no-repeat, no-repeat;
   background-attachment: fixed, fixed;
+}
+html.dsh-anime body,
+html.dsh-anime #root {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+/* the shell wrappers between #root and the real columns must not paint over
+   the picture either (their children keep their own translucent tint) */
+html.dsh-anime #root > *,
+html.dsh-anime #root > * > *,
+html.dsh-anime #root > * > * > * {
+  background-color: transparent !important;
 }
 html.dsh-anime *,
 html.dsh-anime *::before,
@@ -510,8 +526,9 @@ html:not(.dsh-anime) #dsh-anime-poster { display: none; }
 
 #dsh-anime-logo {
   position: fixed;
-  top: 10px;
-  right: 14px;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2147482600;
   display: flex;
   align-items: center;
@@ -664,13 +681,13 @@ html.dsh-anime.anime-light,
 html.dsh-anime.anime-light body {
   color: #2e2a24;
 }
-html.dsh-anime.anime-light body {
+html.dsh-anime.anime-light {
   background-color: #f4ecdf;
   background-image: linear-gradient(
       180deg,
-      rgba(244, 236, 223, 0.84) 0%,
-      rgba(244, 236, 223, 0.6) 46%,
-      rgba(238, 228, 212, 0.9) 100%
+      rgba(244, 236, 223, 0.8) 0%,
+      rgba(244, 236, 223, 0.55) 46%,
+      rgba(238, 228, 212, 0.88) 100%
     ),
     var(--dsh-anime-bg, none);
 }

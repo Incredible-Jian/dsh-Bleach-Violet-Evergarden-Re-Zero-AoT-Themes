@@ -67,7 +67,11 @@
     "L54 250 C48 220 42 190 38 148 L44 106 C52 78 74 62 100 62 Z'/>" +
     "<circle cx='60' cy='120' r='20'/><circle cx='140' cy='120' r='20'/>" +
     "<ellipse cx='100' cy='40' rx='17' ry='21'/>" +
-    "<path d='M88 54 L100 70 L112 54 Z'/>"
+    "<path d='M88 54 L100 70 L112 54 Z'/>" +
+    "<circle cx='93' cy='37' r='2.8' fill='#ff6a4d'/>" +
+    "<circle cx='107' cy='37' r='2.8' fill='#ff6a4d'/>" +
+    "<path d='M92 50 Q100 56 108 50' fill='none' stroke='#ff6a4d' stroke-width='2' " +
+    "stroke-linecap='round' opacity='0.85'/>"
 
   // Armored Titan (200x340) — broad, hunched, heavy pauldrons, glowing eyes.
   var ARMORED =
@@ -82,7 +86,9 @@
     "<ellipse cx='100' cy='38' rx='18' ry='16'/>" +
     "<path d='M86 48 L100 62 L114 48 Z'/>" +
     "<circle cx='93' cy='36' r='3.4' fill='#ff5a3c'/>" +
-    "<circle cx='107' cy='36' r='3.4' fill='#ff5a3c'/>"
+    "<circle cx='107' cy='36' r='3.4' fill='#ff5a3c'/>" +
+    "<path d='M91 48 Q100 55 109 48' fill='none' stroke='#ff5a3c' stroke-width='2.4' " +
+    "stroke-linecap='round' opacity='0.85'/>"
 
   // Cart Titan (380x180) — low quadruped: long body, four legs, cargo humps.
   var CART =
@@ -91,6 +97,9 @@
     "<path fill='none' stroke-width='30' d='M282 90 C298 86 308 80 314 74'/>" +
     "<ellipse cx='326' cy='70' rx='17' ry='13'/>" +
     "<path d='M338 64 L372 70 L368 86 L336 80 Z'/>" +
+    "<circle cx='319' cy='65' r='2.4' fill='#ff6a4d'/>" +
+    "<circle cx='331' cy='65' r='2.4' fill='#ff6a4d'/>" +
+
     "<path fill='none' stroke-width='20' d='M112 112 L100 170'/>" +
     "<path fill='none' stroke-width='20' d='M140 110 L136 170'/>" +
     "<path fill='none' stroke-width='20' d='M304 108 L298 170'/>" +
