@@ -30,7 +30,7 @@
 - **Re:Zero / Re:从零开始的异世界生活** — Emilia's amethyst `#8a63d2` and Rem's azure `#4a9eff` woven through the brand gradient.
 - **Violet Evergarden / 紫罗兰永恒花园** — teal / gold / emerald accents (`#2f8f86` / `#cda349` / `#3fae8f`), a soft cinematic **vignette**, a framed **portrait poster** in the corner (golden braids, the emerald brooch, letters in hand), **letters drifting on the wind**, and period **serif headings**.
 
-It also unifies the typeface across the entire UI, adds drifting **senbonzakura petals** (Byakuya-style scattering blades), gradient scrollbars/buttons, a glowing focus ring, and a one-click toggle.
+It also unifies the typeface across the entire UI, adds drifting **senbonzakura petals** (Byakuya-style scattering blades), gradient scrollbars/buttons, a glowing focus ring, an ink-wash **sidebar** with a crimson active rail, a Bleach-style **「卍 解」 wordmark** in the top-left corner, an optional **wallpaper** behind a dark wash, and a one-click toggle.
 
 ![preview](docs/preview.png)
 
@@ -42,6 +42,9 @@ It also unifies the typeface across the entire UI, adds drifting **senbonzakura 
 | --- | --- | --- |
 | 🎨 Palette | Deepened dark base + crimson→amethyst→azure→teal gradient | 加深的暗色底 + 猩红→紫水晶→湛蓝→青绿渐变 |
 | 🪽 Emblem | Breathing Wings-of-Freedom mark, bottom-right | 右下角会呼吸的自由之翼徽记 |
+| 🖼️ Wallpaper | Monochrome reiatsu backdrop under a dark wash; drop in your own image | 黑色灵压风壁纸 + 暗色蒙层，可替换成自己的图 |
+| 🈶 Wordmark | Bleach-style text logotype in the top-left corner | 左上角「卍 解」文字标志 |
+| 📚 Sidebar | Ink-wash panel, crimson active rail, quieter section labels | 侧栏水墨底、猩红选中条、更安静的栏目标签 |
 |  Titans | Colossal / Armored / Cart Titan ghost silhouettes (14% screen blend) drifting across the bottom — clearly visible, never dimming the text | 超大型 / 铠之 / 车力巨人以 14% 的浅色幽灵层横穿底部 —— 看得见，又不会压暗正文 |
 | 🌸 Petals | Senbonzakura-style scattering pink blades | 朽木白哉式飘散的千本樱花瓣 |
 | 卍 Corners | Bankai manji marks in all four corners | 四个角落的卍解标记 |
@@ -104,6 +107,19 @@ All colours live at the top of [`theme.css`](theme.css) inside `html.dsh-anime {
 
 Decorations (emblem `#dsh-anime-emblem`, petals `#dsh-anime-petals`, titans `#dsh-anime-titans`, corners `.dsh-anime-corner`, toggle `#dsh-anime-toggle`) are styled in the lower half of `theme.css`; the titan SVGs, senbonzakura logic and corner marks live in [`theme.js`](theme.js).
 装饰元素（徽记、花瓣、巨人、角落标记、开关）的样式在 `theme.css` 下半部分；巨人 SVG、千本樱逻辑与卍角标在 [`theme.js`](theme.js)。
+
+### Wallpaper · 换壁纸
+
+The plugin ships an original monochrome “reiatsu” backdrop. To use your own picture, drop it in as `assets/background.jpg` and restart DSH — the file is read at startup, downscaled into a data URI and placed under the dark wash:
+插件自带一张原创的黑白「灵压」壁纸。想换成自己的图，把图片保存为 `assets/background.jpg` 再重启 DSH 即可（插件启动时读取、内联为 data URI，并压上暗色蒙层）：
+
+```console
+# any JPEG/PNG works; ~1600px wide keeps the payload small
+cp ~/Pictures/my-wallpaper.jpg <path-to-plugin>/assets/background.jpg
+```
+
+`assets/background.jpg` is **git-ignored**, so a private wallpaper is never published with the repo — that also keeps fan-art of copyrighted series out of the repository.
+`assets/background.jpg` 已加入 **.gitignore**，个人壁纸不会随仓库发布；同人图也因此不会被误提交到公开仓库。
 
 ## How it works · 原理
 

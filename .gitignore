@@ -18,3 +18,7 @@ node_modules/
 /preview*.png
 /preview*.html
 /shapes*.png
+
+# Personal wallpaper is never published: drop your own image here instead
+/assets/background.jpg
+/assets/background-local*

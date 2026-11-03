@@ -56,10 +56,25 @@ html.dsh-anime {
 /* ---- unified typography across the whole UI ---------------------------- */
 html.dsh-anime,
 html.dsh-anime body {
-  background: #060912;
+  background-color: #060912;
   color: var(--anime-ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* ---- wallpaper: a monochrome reiatsu backdrop under a dark wash --------- */
+html.dsh-anime body {
+  background-image: linear-gradient(
+      180deg,
+      rgba(6, 9, 18, 0.88) 0%,
+      rgba(6, 9, 18, 0.7) 46%,
+      rgba(6, 9, 18, 0.94) 100%
+    ),
+    var(--dsh-anime-bg, none);
+  background-size: cover, cover;
+  background-position: center, center 28%;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
 }
 html.dsh-anime *,
 html.dsh-anime *::before,
@@ -487,4 +502,66 @@ html:not(.dsh-anime) #dsh-anime-poster { display: none; }
   12% { opacity: 1; }
   88% { opacity: 1; }
   100% { opacity: 0; transform: translateX(114vw) rotate(calc(var(--lrot, 0deg) + 26deg)); }
+}
+
+/* ===========================================================================
+   Bleach-style wordmark in the top-left corner + ink-wash sidebar
+   =========================================================================== */
+
+#dsh-anime-logo {
+  position: fixed;
+  top: 14px;
+  left: 16px;
+  z-index: 2147482600;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  pointer-events: none;
+  user-select: none;
+}
+#dsh-anime-logo .cn {
+  font-family: "Songti SC", "SimSun", "Yu Mincho", serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  background: var(--anime-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 10px rgba(216, 58, 48, 0.35));
+}
+#dsh-anime-logo .en {
+  font-family: "Georgia", serif;
+  font-size: 10px;
+  letter-spacing: 0.44em;
+  text-transform: uppercase;
+  color: #8b93ad;
+}
+html:not(.dsh-anime) #dsh-anime-logo { display: none; }
+
+/* the shipped brand icon gives way to the wordmark */
+html.dsh-anime [class*="brand"] svg,
+html.dsh-anime [class*="brand"] img {
+  display: none !important;
+}
+html.dsh-anime [class*="brand"] {
+  letter-spacing: 0.16em;
+  font-family: "Songti SC", "SimSun", serif !important;
+}
+
+/* ---- sidebar: ink-wash panel, crimson rail, quiet section labels ------- */
+html.dsh-anime [class*="sidebar"] {
+  background-image: linear-gradient(180deg, rgba(10, 14, 26, 0.92), rgba(6, 9, 18, 0.86));
+  box-shadow: inset -1px 0 0 rgba(216, 58, 48, 0.18);
+}
+html.dsh-anime [class*="sidebar"] [class*="section"] {
+  letter-spacing: 0.1em;
+  color: #8d96b2;
+}
+html.dsh-anime [class*="sidebar"] [class*="row"]:hover {
+  background: rgba(216, 58, 48, 0.08);
+}
+html.dsh-anime [class*="sidebar"] [class*="active"] {
+  background: linear-gradient(90deg, rgba(216, 58, 48, 0.16), rgba(138, 99, 210, 0.1));
+  box-shadow: inset 2px 0 0 #d83a30;
 }

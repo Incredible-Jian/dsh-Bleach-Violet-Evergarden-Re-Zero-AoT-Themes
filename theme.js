@@ -168,6 +168,14 @@
     topline.setAttribute('aria-hidden', 'true')
     document.body.appendChild(topline)
 
+    /* Bleach-style wordmark in the top-left corner */
+    var logo = document.createElement('div')
+    logo.id = 'dsh-anime-logo'
+    logo.setAttribute('aria-hidden', 'true')
+    logo.innerHTML = '<span class="cn">卍 解</span>' +
+      '<span class="en">Bleach · Anime Theme</span>'
+    document.body.appendChild(logo)
+
     /* titan ghosts: two copies of the strip form a seamless scrolling track */
     var titans = document.createElement('div')
     titans.id = 'dsh-anime-titans'
