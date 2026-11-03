@@ -306,11 +306,6 @@
     try {
       buildDecor()
       setVariant()
-      clearShell()
-      // the shell renders late, so retry a couple of times
-      setTimeout(clearShell, 600)
-      setTimeout(clearShell, 2000)
-      setTimeout(clearShell, 5000)
     } catch (e) {}
   }
 

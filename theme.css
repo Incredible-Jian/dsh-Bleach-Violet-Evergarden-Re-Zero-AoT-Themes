@@ -17,10 +17,10 @@ html.dsh-anime body {
   /* --- surfaces: translucent so the titan backdrop and the ambient glows
          read *through* the panels while the text stays perfectly legible --- */
   --dsw-alias-bg-base: #060912 !important;
-  --dsw-alias-bg-layer-1: rgba(12, 17, 32, 0.66) !important;
-  --dsw-alias-bg-layer-2: rgba(18, 26, 48, 0.76) !important;
+  --dsw-alias-bg-layer-1: rgba(12, 17, 32, 0.88) !important;
+  --dsw-alias-bg-layer-2: rgba(18, 26, 48, 0.92) !important;
   --dsw-alias-bg-overlay: rgba(10, 15, 28, 0.9) !important;
-  --dsw-specific-sidebar-fill: rgba(8, 12, 22, 0.74) !important;
+  --dsw-specific-sidebar-fill: rgba(8, 12, 22, 0.9) !important;
 
   /* --- lines --- */
   --dsw-alias-border-l1: #1c2540 !important;
@@ -55,12 +55,20 @@ html.dsh-anime body {
 }
 
 /* ---- unified typography across the whole UI ---------------------------- */
+html.dsh-anime {
+  color-scheme: dark;
+}
 html.dsh-anime,
 html.dsh-anime body {
   background-color: #060912;
-  color: var(--anime-ink);
+  color: #f1ece2 !important;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+/* keep the app's own light theme from washing text out over our dark canvas */
+html.dsh-anime body {
+  --dsw-alias-label-primary: #f1ece2 !important;
+  --dsw-alias-label-secondary: #97a0bd !important;
 }
 
 /* ---- wallpaper: a monochrome reiatsu backdrop under a dark wash ---------
@@ -68,31 +76,25 @@ html.dsh-anime body {
    picture is actually visible behind the UI instead of being covered by an
    opaque #root background. */
 html.dsh-anime {
-  background-color: #060912;
+  background-color: #060912 !important;
   background-image: linear-gradient(
       180deg,
       rgba(6, 9, 18, 0.7) 0%,
       rgba(6, 9, 18, 0.38) 46%,
       rgba(6, 9, 18, 0.86) 100%
     ),
-    var(--dsh-anime-bg, none);
-  background-size: cover, cover;
-  background-position: center, center 26%;
-  background-repeat: no-repeat, no-repeat;
-  background-attachment: fixed, fixed;
+    var(--dsh-anime-bg, none) !important;
+  background-size: cover, cover !important;
+  background-position: center, center 26% !important;
+  background-repeat: no-repeat, no-repeat !important;
+  background-attachment: fixed, fixed !important;
 }
 html.dsh-anime body,
 html.dsh-anime #root {
   background-color: transparent !important;
   background-image: none !important;
 }
-/* the shell wrappers between #root and the real columns must not paint over
-   the picture either (their children keep their own translucent tint) */
-html.dsh-anime #root > *,
-html.dsh-anime #root > * > *,
-html.dsh-anime #root > * > * > * {
-  background-color: transparent !important;
-}
+
 html.dsh-anime *,
 html.dsh-anime *::before,
 html.dsh-anime *::after {
@@ -616,13 +618,7 @@ html.dsh-anime [class*="sidebar"] [class*="section"] {
   letter-spacing: 0.1em;
   color: #8d96b2;
 }
-html.dsh-anime [class*="sidebar"] [class*="row"]:hover {
-  background: rgba(216, 58, 48, 0.08);
-}
-html.dsh-anime [class*="sidebar"] [class*="active"] {
-  background: linear-gradient(90deg, rgba(216, 58, 48, 0.16), rgba(138, 99, 210, 0.1));
-  box-shadow: inset 2px 0 0 #d83a30;
-}
+
 
 /* ---- wordmark: the 夜/昼 chip that switches variants -------------------- */
 #dsh-anime-logo .mode {
