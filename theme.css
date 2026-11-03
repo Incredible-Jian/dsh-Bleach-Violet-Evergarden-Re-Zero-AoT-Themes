@@ -16,10 +16,10 @@ html.dsh-anime {
   /* --- surfaces: translucent so the titan backdrop and the ambient glows
          read *through* the panels while the text stays perfectly legible --- */
   --dsw-alias-bg-base: #060912 !important;
-  --dsw-alias-bg-layer-1: rgba(12, 17, 32, 0.74) !important;
-  --dsw-alias-bg-layer-2: rgba(18, 26, 48, 0.82) !important;
+  --dsw-alias-bg-layer-1: rgba(12, 17, 32, 0.66) !important;
+  --dsw-alias-bg-layer-2: rgba(18, 26, 48, 0.76) !important;
   --dsw-alias-bg-overlay: rgba(10, 15, 28, 0.9) !important;
-  --dsw-specific-sidebar-fill: rgba(8, 12, 22, 0.8) !important;
+  --dsw-specific-sidebar-fill: rgba(8, 12, 22, 0.74) !important;
 
   /* --- lines --- */
   --dsw-alias-border-l1: #1c2540 !important;
@@ -66,9 +66,9 @@ html.dsh-anime body {
 html.dsh-anime body {
   background-image: linear-gradient(
       180deg,
-      rgba(6, 9, 18, 0.88) 0%,
-      rgba(6, 9, 18, 0.7) 46%,
-      rgba(6, 9, 18, 0.94) 100%
+      rgba(6, 9, 18, 0.74) 0%,
+      rgba(6, 9, 18, 0.46) 46%,
+      rgba(6, 9, 18, 0.88) 100%
     ),
     var(--dsh-anime-bg, none);
   background-size: cover, cover;
@@ -138,8 +138,8 @@ html.dsh-anime body::after {
   z-index: 2147481300;
   pointer-events: none;
   overflow: hidden;
-  opacity: 0.14;
-  color: #93a9d6;
+  opacity: 0.2;
+  color: #a7bce6;
   mix-blend-mode: screen;
 }
 html:not(.dsh-anime) #dsh-anime-titans { display: none; }
@@ -510,25 +510,26 @@ html:not(.dsh-anime) #dsh-anime-poster { display: none; }
 
 #dsh-anime-logo {
   position: fixed;
-  bottom: 16px;
-  left: 16px;
+  top: 10px;
+  right: 14px;
   z-index: 2147482600;
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 6px 11px 6px 7px;
-  border: 1px solid rgba(216, 58, 48, 0.35);
+  gap: 7px;
+  padding: 4px 9px 4px 5px;
+  border: 1px solid rgba(216, 58, 48, 0.3);
   border-radius: 999px;
-  background: rgba(8, 12, 22, 0.72);
+  background: rgba(8, 12, 22, 0.6);
   backdrop-filter: blur(8px);
   cursor: pointer;
   user-select: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  opacity: 0.75;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 #dsh-anime-logo:hover {
+  opacity: 1;
   border-color: rgba(216, 58, 48, 0.7);
   box-shadow: 0 0 16px -4px rgba(216, 58, 48, 0.5);
-  transform: translateY(-1px);
 }
 @media (prefers-reduced-motion: reduce) {
   #dsh-anime-logo { transition: none; }
@@ -667,9 +668,9 @@ html.dsh-anime.anime-light body {
   background-color: #f4ecdf;
   background-image: linear-gradient(
       180deg,
-      rgba(244, 236, 223, 0.9) 0%,
-      rgba(244, 236, 223, 0.72) 46%,
-      rgba(238, 228, 212, 0.96) 100%
+      rgba(244, 236, 223, 0.84) 0%,
+      rgba(244, 236, 223, 0.6) 46%,
+      rgba(238, 228, 212, 0.9) 100%
     ),
     var(--dsh-anime-bg, none);
 }

@@ -27,7 +27,7 @@ A cinematic dark skin for [DeepSeek Harness (DSH)](https://github.com/deepseek-a
 <br>
 
 - **进击的巨人** — 调查兵团猩红 `#d83a30`、自由之翼徽记，以及横穿底部的超大型 / 铠之 / 车力巨人幽灵剪影。
-- **死神** — 墨黑底、骨白字、灵压橙、四角卍解标记，以及左下角「深 DSH」字标。
+- **死神** — 墨黑底、骨白字、灵压橙、四角卍解标记，以及右上角「深 DSH」字标。
 - **Re:Zero** — 爱蜜莉雅紫水晶与蕾姆湛蓝，融进品牌渐变。
 - **紫罗兰永恒花园** — 青绿 / 金 / 祖母绿点缀、金框人物海报、随风飘过的信笺、衬线标题。
 - 玻璃面板、顶部渐变细线、水墨侧栏与猩红选中条、全站统一字体。
@@ -79,13 +79,13 @@ dsh plugin --profile desktop add link:/absolute/path/to/dsh-anime-theme
 ## Usage
 
 - The theme is on by default once installed.
-- Click the **深 DSH** wordmark at the bottom-left to switch between **夜 (dark)** and **昼 (light)**; the chip shows the current one and the choice is stored in `localStorage`.
+- Click the **深 DSH** wordmark at the top-right to switch between **夜 (dark)** and **昼 (light)**; the chip shows the current one and the choice is stored in `localStorage`.
 - To remove the skin, disable or uninstall the `dsh-anime-theme` row in the Plugins page.
 
 <br>
 
 - 安装后主题默认开启。
-- 点左下角 **深 DSH** 字标即可在 **夜（深色）** 与 **昼（浅色）** 之间切换，旁边的小圆章会显示当前模式，选择保存在 `localStorage`。
+- 点右上角 **深 DSH** 字标即可在 **夜（深色）** 与 **昼（浅色）** 之间切换，旁边的小圆章会显示当前模式，选择保存在 `localStorage`。
 - 想彻底移除：在插件页禁用或卸载 `dsh-anime-theme` 这一行。
 
 ---
