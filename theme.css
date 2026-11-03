@@ -510,20 +510,36 @@ html:not(.dsh-anime) #dsh-anime-poster { display: none; }
 
 #dsh-anime-logo {
   position: fixed;
-  top: 14px;
+  top: 12px;
   left: 16px;
   z-index: 2147482600;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 9px;
   pointer-events: none;
   user-select: none;
 }
-#dsh-anime-logo .cn {
+/* a stamped kanji seal, like a hanko on a Japanese print */
+#dsh-anime-logo .seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(216, 58, 48, 0.75);
+  border-radius: 4px;
   font-family: "Songti SC", "SimSun", "Yu Mincho", serif;
-  font-size: 18px;
+  font-size: 13px;
+  line-height: 1;
+  color: #e9c9c4;
+  background: rgba(216, 58, 48, 0.14);
+  box-shadow: 0 0 10px rgba(216, 58, 48, 0.28), inset 0 0 6px rgba(216, 58, 48, 0.18);
+}
+#dsh-anime-logo .cn {
+  font-family: "Yu Mincho", "Songti SC", "SimSun", serif;
+  font-size: 17px;
   font-weight: 700;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.2em;
   background: var(--anime-grad);
   -webkit-background-clip: text;
   background-clip: text;
@@ -531,18 +547,33 @@ html:not(.dsh-anime) #dsh-anime-poster { display: none; }
   filter: drop-shadow(0 0 10px rgba(216, 58, 48, 0.35));
 }
 #dsh-anime-logo .en {
-  font-family: "Georgia", serif;
-  font-size: 10px;
-  letter-spacing: 0.44em;
-  text-transform: uppercase;
+  font-family: "Yu Gothic", "Hiragino Sans", "Yu Mincho", serif;
+  font-size: 9px;
+  letter-spacing: 0.24em;
   color: #8b93ad;
+  padding-left: 2px;
 }
 html:not(.dsh-anime) #dsh-anime-logo { display: none; }
 
-/* the shipped brand icon gives way to the wordmark */
+/* the shipped brand block yields to the wordmark */
 html.dsh-anime [class*="brand"] svg,
 html.dsh-anime [class*="brand"] img {
   display: none !important;
+}
+html.dsh-anime [class*="brand"][class*="name"],
+html.dsh-anime [class*="brand-name"],
+html.dsh-anime [class*="brandName"] {
+  font-size: 0 !important;
+  letter-spacing: 0;
+}
+html.dsh-anime [class*="brand"][class*="name"]::after,
+html.dsh-anime [class*="brand-name"]::after,
+html.dsh-anime [class*="brandName"]::after {
+  content: "DSH ／ 深索";
+  font-family: "Yu Mincho", "Songti SC", serif;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: #d9dce6;
 }
 html.dsh-anime [class*="brand"] {
   letter-spacing: 0.16em;

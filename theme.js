@@ -172,8 +172,9 @@
     var logo = document.createElement('div')
     logo.id = 'dsh-anime-logo'
     logo.setAttribute('aria-hidden', 'true')
-    logo.innerHTML = '<span class="cn">卍 解</span>' +
-      '<span class="en">Bleach · Anime Theme</span>'
+    logo.innerHTML = '<span class="seal">深</span>' +
+      '<span class="cn">DSH</span>' +
+      '<span class="en">ディーエスエイチ</span>'
     document.body.appendChild(logo)
 
     /* titan ghosts: two copies of the strip form a seamless scrolling track */

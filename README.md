@@ -4,155 +4,184 @@
   <img src="icon.svg" alt="dsh-anime-theme icon" width="120" />
 </p>
 
-<p align="center">
-  A cinematic dark skin for the <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness (DSH)</a> Web GUI, blending the colour worlds of four anime into one cohesive theme.
-  <br/>
-  一个为 DeepSeek Harness（DSH）网页端打造的电影感暗色皮肤，把四部番剧的色彩融进同一套主题。
-</p>
+## Introduction
 
-<p align="center">
-  <a href="#features--效果">Features</a> ·
-  <a href="#install--安装">Install</a> ·
-  <a href="#usage--使用">Usage</a> ·
-  <a href="#customize--自定义">Customize</a> ·
-  <a href="#how-it-works--原理">How it works</a> ·
-  <a href="#license--许可">License</a>
-</p>
+A cinematic dark skin for [DeepSeek Harness (DSH)](https://github.com/deepseek-ai/deepseek-harness) that blends four anime into one cohesive look: Attack on Titan, Bleach, Re:Zero and Violet Evergarden.
+
+<br>
+
+一个为 [DeepSeek Harness（DSH）](https://github.com/deepseek-ai/deepseek-harness) 打造的电影感暗色皮肤，把四部番剧融进同一套视觉：进击的巨人、死神、Re:Zero 与紫罗兰永恒花园。
 
 ---
 
-## Introduction · 简介
+## Features
 
-`dsh-anime-theme` is a **pure host-side DSH plugin** that reskins the Web GUI without touching any core logic. It pulls its palette from four series:
+- **Attack on Titan** — Survey Corps crimson `#d83a30`, a Wings-of-Freedom emblem, and Colossal / Armored / Cart titan ghost silhouettes drifting across the bottom.
+- **Bleach** — ink-black ground, bone-white text, spiritual orange, 卍 bankai corner marks and a 「卍解」 wordmark.
+- **Re:Zero** — Emilia's amethyst and Rem's azure in the brand gradient.
+- **Violet Evergarden** — teal / gold / emerald accents, a framed portrait poster, letters drifting on the wind, serif headings.
+- Glass panels, gradient top hairline, ink-wash sidebar with a crimson active rail, unified typography.
+- Optional wallpaper behind a dark wash, one-click toggle, honours `prefers-reduced-motion`.
 
-- **Attack on Titan / 进击的巨人** — Survey Corps crimson `#d83a30`, plus a simplified **Wings of Freedom** emblem and **titan silhouettes** (Attack, Armored & Cart Titan) slowly marching across the backdrop.
-- **Bleach / 死神** — a deep ink-black ground, bone-white text, spiritual orange, and **卍 (manji) bankai marks** in all four corners.
-- **Re:Zero / Re:从零开始的异世界生活** — Emilia's amethyst `#8a63d2` and Rem's azure `#4a9eff` woven through the brand gradient.
-- **Violet Evergarden / 紫罗兰永恒花园** — teal / gold / emerald accents (`#2f8f86` / `#cda349` / `#3fae8f`), a soft cinematic **vignette**, a framed **portrait poster** in the corner (golden braids, the emerald brooch, letters in hand), **letters drifting on the wind**, and period **serif headings**.
+<br>
 
-It also unifies the typeface across the entire UI, adds drifting **senbonzakura petals** (Byakuya-style scattering blades), gradient scrollbars/buttons, a glowing focus ring, an ink-wash **sidebar** with a crimson active rail, a Bleach-style **「卍 解」 wordmark** in the top-left corner, an optional **wallpaper** behind a dark wash, and a one-click toggle.
+- **进击的巨人** — 调查兵团猩红 `#d83a30`、自由之翼徽记，以及横穿底部的超大型 / 铠之 / 车力巨人幽灵剪影。
+- **死神** — 墨黑底、骨白字、灵压橙、四角卍解标记，以及左上角「卍解」字标。
+- **Re:Zero** — 爱蜜莉雅紫水晶与蕾姆湛蓝，融进品牌渐变。
+- **紫罗兰永恒花园** — 青绿 / 金 / 祖母绿点缀、金框人物海报、随风飘过的信笺、衬线标题。
+- 玻璃面板、顶部渐变细线、水墨侧栏与猩红选中条、全站统一字体。
+- 可换壁纸（暗色蒙层之下）、一键开关、尊重「减少动态效果」设置。
 
 ![preview](docs/preview.png)
 
-这是一个**纯宿主侧的 DSH 插件**，只给网页端换肤，不改动任何核心逻辑。配色取自四部作品：进击的巨人（调查兵团猩红 + 自由之翼徽记 + 背景里行走的巨人剪影：超大型 / 铠之 / 车力）、死神（墨黑底 + 骨白字 + 灵压橙 + 四角卍解标记）、Re:Zero（爱蜜莉雅紫水晶 + 蕾姆湛蓝）、紫罗兰永恒花园（青绿 / 金 / 祖母绿点缀 + 电影感暗角 + 角落的**人物海报**：金色发辫、祖母绿胸针、手持信笺，还有随风飘过的**信笺**与古典**衬线标题**）。此外还统一了全站字体、加入朽木白哉式的千本樱花瓣、渐变滚动条与按钮、发光焦点环，以及一键开关。
+---
 
-## Features · 效果
+## Install
 
-| | English | 中文 |
-| --- | --- | --- |
-| 🎨 Palette | Deepened dark base + crimson→amethyst→azure→teal gradient | 加深的暗色底 + 猩红→紫水晶→湛蓝→青绿渐变 |
-| 🪽 Emblem | Breathing Wings-of-Freedom mark, bottom-right | 右下角会呼吸的自由之翼徽记 |
-| 🖼️ Wallpaper | Monochrome reiatsu backdrop under a dark wash; drop in your own image | 黑色灵压风壁纸 + 暗色蒙层，可替换成自己的图 |
-| 🈶 Wordmark | Bleach-style text logotype in the top-left corner | 左上角「卍 解」文字标志 |
-| 📚 Sidebar | Ink-wash panel, crimson active rail, quieter section labels | 侧栏水墨底、猩红选中条、更安静的栏目标签 |
-|  Titans | Colossal / Armored / Cart Titan ghost silhouettes (14% screen blend) drifting across the bottom — clearly visible, never dimming the text | 超大型 / 铠之 / 车力巨人以 14% 的浅色幽灵层横穿底部 —— 看得见，又不会压暗正文 |
-| 🌸 Petals | Senbonzakura-style scattering pink blades | 朽木白哉式飘散的千本樱花瓣 |
-| 卍 Corners | Bankai manji marks in all four corners | 四个角落的卍解标记 |
-| 🖼️ Poster | Framed Violet Evergarden portrait (original SVG) with gold frame | 角落的紫罗兰永恒花园人物海报（原创 SVG，金框） |
-| ✉️ Letters | Envelopes drifting across the screen on the wind | 随风飘过的信笺 |
-| 🔤 Type | Unified font everywhere, serif headings (code stays monospace) | 全站统一字体，标题用衬线（代码区保留等宽） |
-|  Depth | Ambient colour glows + cinematic vignette | 氛围光晕 + 电影感暗角 |
-| 🔘 Toggle | Bottom-left pill, preference persisted locally | 左下角胶囊开关，偏好本地持久化 |
-| ♿ A11y | Honours `prefers-reduced-motion` (no animation) | 尊重系统的「减少动态效果」设置 |
+Requires **DeepSeek Harness ≥ 0.2.0-rc.2, < 0.2.2-0**. Works on the Desktop app and the plain Web profile.
 
-## Install · 安装
+**Plugin market** — pick a custom registry and install by package name `dsh-anime-theme`.
 
-> Requires DeepSeek Harness **≥ 0.2.0-rc.2, < 0.2.2-0**. Works on the Desktop app and the plain Web profile.
-> 需要 DeepSeek Harness **≥ 0.2.0-rc.2、< 0.2.2-0**。桌面端与纯 Web profile 均可用。
+**DSH CLI**
 
-**1. Plugin market (recommended) · 插件市场**
-In the DSH plugin market, choose a custom registry / source and install by package name `dsh-anime-theme`. Or point the market at this repo once it is published to a registry.
-在 DSH 插件市场中选择自定义源，按包名 `dsh-anime-theme` 安装。
-
-**2. DSH CLI · 命令行**
 ```console
 dsh plugin --profile desktop add Incredible-Jian/dsh-Bleach-Violet-Evergarden-Re-Zero-AoT-Themes
-# or, from a local clone:
+# or from a local clone:
 dsh plugin --profile desktop add link:/absolute/path/to/dsh-anime-theme
 ```
 
-**3. Local workspace bundle · 本地工作区**
-Clone this repo anywhere, then in the agent / plugin manager install the bundle from its absolute directory. The Desktop profile picks it up immediately.
-克隆本仓库到任意位置，然后在插件管理器里按它的绝对目录安装 bundle，桌面端 profile 会立即加载。
+**Local bundle** — clone the repo anywhere and install the bundle from its absolute directory.
 
-### After installing · 安装之后
+⚠️ **Restart the Desktop app once after installing.** The desktop shell collects page-injection rows at boot and caches them, so a plain refresh will not load a newly installed injection plugin.
 
-⚠️ **Restart the DeepSeek Harness Desktop app once.** The desktop shell collects page-injection rows once at boot and caches them, so a plain page refresh will not pick up a freshly installed injection plugin — a restart is required for the theme to appear.
-⚠️ **安装后请重启一次 DeepSeek Harness 桌面应用。** 桌面端在启动时一次性收集页面注入项并缓存，单纯刷新页面不会加载新装的注入插件——必须重启才会出现主题。
+<br>
 
-## Usage · 使用
+需要 **DeepSeek Harness ≥ 0.2.0-rc.2、< 0.2.2-0**，桌面端与纯 Web profile 均可用。
 
-- The theme is **on by default** once installed.
-- Click the **「二次元主题 · 开/关」** pill at the bottom-left to toggle it instantly; the choice is saved in `localStorage` (`dsh-anime-theme-enabled`) and survives reloads.
-- To remove it entirely, disable / uninstall the `dsh-anime-theme` row in the Plugins page.
+**插件市场** — 选择自定义源，按包名 `dsh-anime-theme` 安装。
 
-- 安装后主题**默认开启**。
-- 点左下角的 **「二次元主题 · 开/关」** 胶囊可即时切换；选择保存在 `localStorage`（`dsh-anime-theme-enabled`），刷新后仍保持。
-- 想彻底移除：在插件页禁用 / 卸载 `dsh-anime-theme` 这一行即可。
-
-## Customize · 自定义
-
-All colours live at the top of [`theme.css`](theme.css) inside `html.dsh-anime { … }`. Edit, save, restart.
-所有颜色都在 [`theme.css`](theme.css) 顶部的 `html.dsh-anime { … }` 里，改完保存、重启即可。
-
-| Variable · 变量 | Role · 作用 |
-| --- | --- |
-| `--anime-crimson` / `--dsw-alias-brand-primary` | Primary accent — buttons, brand · 主强调色 |
-| `--anime-amethyst` / `--anime-azure` | Re:Zero purple / blue in the gradient · 渐变里的紫 / 蓝 |
-| `--anime-teal` / `--anime-gold` / `--anime-emerald` | Violet Evergarden accents · 紫罗兰永恒花园点缀 |
-| `--anime-amber` | Bleach spiritual-orange (warn/hover) · 灵压橙 |
-| `--dsw-alias-bg-base` / `-layer-1` / `-layer-2` | Three surface depths · 三层背景深浅 |
-| `--dsw-specific-sidebar-fill` | Sidebar base · 侧栏底色 |
-| `--anime-font` / `--anime-mono` | Unified UI font / code font · 统一字体 / 代码字体 |
-
-Decorations (emblem `#dsh-anime-emblem`, petals `#dsh-anime-petals`, titans `#dsh-anime-titans`, corners `.dsh-anime-corner`, toggle `#dsh-anime-toggle`) are styled in the lower half of `theme.css`; the titan SVGs, senbonzakura logic and corner marks live in [`theme.js`](theme.js).
-装饰元素（徽记、花瓣、巨人、角落标记、开关）的样式在 `theme.css` 下半部分；巨人 SVG、千本樱逻辑与卍角标在 [`theme.js`](theme.js)。
-
-### Wallpaper · 换壁纸
-
-The plugin ships an original monochrome “reiatsu” backdrop. To use your own picture, drop it in as `assets/background.jpg` and restart DSH — the file is read at startup, downscaled into a data URI and placed under the dark wash:
-插件自带一张原创的黑白「灵压」壁纸。想换成自己的图，把图片保存为 `assets/background.jpg` 再重启 DSH 即可（插件启动时读取、内联为 data URI，并压上暗色蒙层）：
+**DSH 命令行**
 
 ```console
-# any JPEG/PNG works; ~1600px wide keeps the payload small
+dsh plugin --profile desktop add Incredible-Jian/dsh-Bleach-Violet-Evergarden-Re-Zero-AoT-Themes
+# 或者从本地克隆安装：
+dsh plugin --profile desktop add link:/absolute/path/to/dsh-anime-theme
+```
+
+**本地 bundle** — 克隆到任意位置，再按绝对目录安装 bundle。
+
+⚠️ **安装后请重启一次桌面应用。** 桌面端在启动时一次性收集页面注入项并缓存，单纯刷新页面不会加载新装的注入插件。
+
+---
+
+## Usage
+
+- The theme is on by default once installed.
+- Use the 「二次元主题 · 开/关」 pill at the bottom-left to toggle it; the choice is stored in `localStorage` and survives reloads.
+- To remove it, disable or uninstall the `dsh-anime-theme` row in the Plugins page.
+
+<br>
+
+- 安装后主题默认开启。
+- 点左下角「二次元主题 · 开/关」胶囊即可切换，选择保存在 `localStorage`，刷新后仍保持。
+- 想彻底移除：在插件页禁用或卸载 `dsh-anime-theme` 这一行。
+
+---
+
+## Customize
+
+All colours live at the top of [`theme.css`](theme.css) inside `html.dsh-anime { … }`.
+
+| Variable | Role |
+| --- | --- |
+| `--anime-crimson` / `--dsw-alias-brand-primary` | primary accent |
+| `--anime-amethyst` / `--anime-azure` | Re:Zero purple / blue |
+| `--anime-teal` / `--anime-gold` / `--anime-emerald` | Violet Evergarden accents |
+| `--anime-amber` | Bleach spiritual orange |
+| `--dsw-alias-bg-base` / `-layer-1` / `-layer-2` | surface depths |
+| `--anime-font` / `--anime-mono` | UI font / code font |
+
+<br>
+
+所有颜色都在 [`theme.css`](theme.css) 顶部的 `html.dsh-anime { … }` 里，改完保存、重启即可。
+
+| 变量 | 作用 |
+| --- | --- |
+| `--anime-crimson` / `--dsw-alias-brand-primary` | 主强调色 |
+| `--anime-amethyst` / `--anime-azure` | Re:Zero 紫 / 蓝 |
+| `--anime-teal` / `--anime-gold` / `--anime-emerald` | 紫罗兰永恒花园点缀 |
+| `--anime-amber` | 死神灵压橙 |
+| `--dsw-alias-bg-base` / `-layer-1` / `-layer-2` | 三层背景深浅 |
+| `--anime-font` / `--anime-mono` | 界面字体 / 代码字体 |
+
+### Wallpaper
+
+The plugin ships an original monochrome “reiatsu” backdrop. To use your own picture, save it as `assets/background.jpg` and restart DSH — it is read at startup, inlined as a data URI and placed under the dark wash.
+
+```console
 cp ~/Pictures/my-wallpaper.jpg <path-to-plugin>/assets/background.jpg
 ```
 
-`assets/background.jpg` is **git-ignored**, so a private wallpaper is never published with the repo — that also keeps fan-art of copyrighted series out of the repository.
-`assets/background.jpg` 已加入 **.gitignore**，个人壁纸不会随仓库发布；同人图也因此不会被误提交到公开仓库。
+`assets/background.jpg` is git-ignored, so a private wallpaper is never published with the repo.
 
-## How it works · 原理
+<br>
 
-This is a **host-only** plugin. On startup, [`index.js`](index.js) reads `theme.css` + `theme.js`, bundles them into one self-contained inline script, and injects it into the served Web GUI through DSH's `webserver/index-inject` channel (Desktop) and `tapIndex` (plain Web). Every style is scoped under the `html.dsh-anime` class, so the toggle is instant and the default theme is never affected. No build step, no client bundle, no external assets.
-这是一个**纯宿主**插件。启动时 [`index.js`](index.js) 读取 `theme.css` + `theme.js`，打包成一段自包含的内联脚本，通过 DSH 的 `webserver/index-inject` 通道（桌面端）和 `tapIndex`（纯 Web 端）注入到网页。所有样式都收敛在 `html.dsh-anime` 类下，因此开关是瞬时的、不影响默认主题。无需构建、无客户端 bundle、无外部资源。
+插件自带一张原创的黑白「灵压」壁纸。想换成自己的图，把图片保存为 `assets/background.jpg` 再重启 DSH 即可：启动时读取、内联为 data URI，并压上暗色蒙层。
+
+```console
+cp ~/Pictures/my-wallpaper.jpg <插件目录>/assets/background.jpg
+```
+
+`assets/background.jpg` 已加入 `.gitignore`，个人壁纸不会随仓库发布。
+
+---
+
+## How it works
+
+A **host-only** plugin. On startup [`index.js`](index.js) reads `theme.css` + `theme.js`, bundles them into one self-contained inline script, and injects it through DSH's `webserver/index-inject` channel (Desktop) and `tapIndex` (plain Web). Every style is scoped under `html.dsh-anime`, so the toggle is instant and the default theme is untouched. No build step, no client bundle.
 
 ```
 dsh-anime-theme/
 ├── index.js            # host entry: builds + injects the inline script
 ├── theme.css           # all styling, scoped under html.dsh-anime
-├── theme.js            # vignette, titans, petals, 卍 corners, emblem, toggle
+├── theme.js            # vignette, titans, petals, 卍 corners, poster, toggle
 ├── cordis.patch.yml    # mounts the plugin row into the profile
-├── icon.svg            # plugin icon (wings + sakura)
+├── icon.svg            # plugin icon
 ├── locale/             # en.json / zh.json display metadata
 ├── package.json        # DSH bundle manifest
 └── LICENSE             # MIT
 ```
 
-## Compatibility · 兼容性
+<br>
 
-- DeepSeek Harness `>=0.2.0-rc.2 <0.2.2-0` (tested on `0.2.1-rc.3` Desktop).
-- The Desktop app needs a **restart** after install/edits (boot-time injection caching); the plain Web profile picks changes up on refresh.
-- Pure CSS/JS — no native binaries, no network calls at runtime.
-
-## Disclaimer · 声明
-
-This is an **unofficial fan-made theme**. It is inspired by the *colour palettes and motifs* of Attack on Titan, Bleach, Re:Zero and Violet Evergarden. It contains **no copyrighted artwork, logos, fonts, audio or video** from those series — the titan silhouettes, wings emblem and sakura are original, simplified SVG shapes drawn for this project. All series names and trademarks belong to their respective owners and are referenced here only to describe the visual inspiration.
-这是一个**非官方的同人主题**，灵感来自上述四部作品的*配色与意象*。它**不包含**这些作品的任何受版权保护的美术、标志、字体、音频或视频——巨人剪影、自由之翼徽记与樱花均为本项目原创的简化 SVG 图形。所有作品名称与商标归各自权利人所有，此处仅用于描述视觉灵感来源。
-
-## License · 许可
-
-[MIT](LICENSE) © 2026 Incredible-Jian.
+一个**纯宿主**插件。启动时 [`index.js`](index.js) 读取 `theme.css` + `theme.js`，打包成一段自包含的内联脚本，通过 DSH 的 `webserver/index-inject` 通道（桌面端）与 `tapIndex`（纯 Web 端）注入页面。所有样式都收敛在 `html.dsh-anime` 类下，开关瞬时生效，不影响默认主题。无需构建、无客户端 bundle。
 
 ---
 
-Made with 🪽 for late-night coding sessions. · 为深夜写代码而生。
+## Compatibility
+
+- DeepSeek Harness `>=0.2.0-rc.2 <0.2.2-0` (tested on `0.2.1-rc.3` Desktop).
+- The Desktop app needs a restart after install or edits; the Web profile picks changes up on refresh.
+- Pure CSS/JS — no native binaries, no network calls at runtime.
+
+<br>
+
+- 适用 DeepSeek Harness `>=0.2.0-rc.2 <0.2.2-0`（已在 `0.2.1-rc.3` 桌面端实测）。
+- 桌面端安装或修改后需要重启；Web profile 刷新即可。
+- 纯 CSS/JS，无原生二进制、运行时无网络请求。
+
+---
+
+## Disclaimer
+
+An **unofficial fan-made theme**. It is inspired by the colour palettes and motifs of Attack on Titan, Bleach, Re:Zero and Violet Evergarden, and contains no copyrighted artwork, logos, fonts, audio or video from those series — the titan silhouettes, wings emblem, sakura and portrait are original SVG shapes drawn for this project. All series names and trademarks belong to their respective owners and are referenced only to describe the visual inspiration.
+
+<br>
+
+**非官方同人主题**。灵感来自上述四部作品的配色与意象，**不包含**任何受版权保护的美术、标志、字体、音频或视频——巨人剪影、自由之翼、樱花与人物海报均为本项目原创的 SVG 图形。所有作品名称与商标归各自权利人所有，此处仅用于描述视觉灵感来源。
+
+---
+
+## License
+
+[MIT](LICENSE) © 2026 Incredible-Jian.
