@@ -26,19 +26,22 @@ const DEFAULT_BACKGROUND =
 
 // The wallpaper is inlined as a data URI. If the user drops a personal image
 // into assets/background.jpg it wins; that file is git-ignored so a private
-// wallpaper never has to be published.
+// wallpaper never has to be published. The same picture also drives the
+// framed wall-art mural (--dsh-anime-mural): the full-canvas wallpaper is
+// hidden behind DSH's opaque shell, but the mural lives *above* it and is
+// always visible.
 function backgroundCss() {
+  let data = null
   try {
     const file = path.join(PACKAGE_ROOT, 'assets', 'background.jpg')
     if (fs.existsSync(file)) {
-      const base64 = fs.readFileSync(file).toString('base64')
-      return ':root{--dsh-anime-bg:url("data:image/jpeg;base64,' + base64 + '")}'
+      data = 'url("data:image/jpeg;base64,' + fs.readFileSync(file).toString('base64') + '")'
     }
   } catch (_) {}
-  return (
-    ':root{--dsh-anime-bg:url("data:image/svg+xml;charset=utf-8,' +
-    encodeURIComponent(DEFAULT_BACKGROUND) + '")}'
-  )
+  if (!data) {
+    data = 'url("data:image/svg+xml;charset=utf-8,' + encodeURIComponent(DEFAULT_BACKGROUND) + '")'
+  }
+  return ':root{--dsh-anime-bg:' + data + ';--dsh-anime-mural:' + data + '}'
 }
 
 // Optional personal portrait for the framed poster: assets/poster.jpg is also

@@ -24,3 +24,7 @@ node_modules/
 /assets/background-local*
 /assets/poster.jpg
 /assets/poster-local*
+
+# never publish local render checks (they may show a personal wallpaper)
+/r*.png
+/mur*.png

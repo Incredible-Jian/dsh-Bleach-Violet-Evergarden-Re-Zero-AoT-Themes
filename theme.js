@@ -251,6 +251,24 @@
       }
     } catch (e) {}
 
+    /* framed wall-art mural: the wallpaper shown as a hanging picture, so it
+       is always visible even though the full backdrop sits behind the shell */
+    try {
+      var mural = document.createElement('div')
+      mural.innerHTML =
+        '<div id="dsh-anime-mural" aria-hidden="true">' +
+        '<div class="mural-frame"><img class="mural-photo" alt="BLEACH"/>' +
+        '<div class="mural-cap">BLEACH · 死神</div></div></div>'
+      var muralEl = mural.firstChild
+      var mphoto = muralEl.querySelector('.mural-photo')
+      var mval = getComputedStyle(document.documentElement)
+        .getPropertyValue('--dsh-anime-mural').trim()
+      if (mphoto && mval && mval.indexOf('url(') === 0) {
+        mphoto.src = mval.slice(4, -1).replace(/^["']|["']$/g, '')
+        document.body.appendChild(muralEl)
+      }
+    } catch (e) {}
+
     /* letters drifting on the wind */
     if (!prefersReduced) {
       var letterField = document.createElement('div')

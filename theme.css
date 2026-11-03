@@ -302,3 +302,51 @@ html.dsh-anime ::selection {
     animation: none !important;
   }
 }
+
+/* ===========================================================================
+   Framed wall-art mural
+   ---------------------------------------------------------------------------
+   The full-canvas wallpaper sits behind DSH's opaque shell, so it is never
+   seen. The same picture is therefore hung as a framed "mural" in the
+   decorative bottom-right column (above the Violet poster and the emblem),
+   which is the area already reserved for artwork. It is pointer-events:none
+   and small enough that it never sits on top of conversation text.
+   =========================================================================== */
+
+#dsh-anime-mural {
+  position: fixed;
+  right: 18px;
+  bottom: 368px;
+  z-index: 2147482000;
+  pointer-events: none;
+  user-select: none;
+}
+#dsh-anime-mural .mural-frame {
+  width: 172px;
+  padding: 5px 5px 3px;
+  border-radius: 8px;
+  background: linear-gradient(160deg, rgba(24, 30, 46, 0.94), rgba(10, 13, 22, 0.96));
+  border: 1px solid rgba(205, 163, 73, 0.5);
+  box-shadow: 0 14px 32px -18px rgba(0, 0, 0, 0.9),
+    0 0 0 3px rgba(205, 163, 73, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  opacity: 0.86;
+  transform: rotate(-0.6deg);
+}
+#dsh-anime-mural .mural-photo {
+  display: block;
+  width: 100%;
+  height: 84px;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 4px;
+  filter: saturate(0.85) contrast(1.02);
+}
+#dsh-anime-mural .mural-cap {
+  padding: 3px 2px 2px;
+  text-align: center;
+  font-family: "Songti SC", "SimSun", "Yu Mincho", serif;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: #b9a273;
+}

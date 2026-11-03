@@ -128,9 +128,13 @@ cp ~/Pictures/my-wallpaper.jpg <path-to-plugin>/assets/background.jpg
 
 The framed poster works the same way: drop a square portrait in as `assets/poster.jpg` and it replaces the drawn Violet SVG.
 
+Because the full-canvas wallpaper normally sits behind DSH's opaque shell, the same picture is also hung as a **framed wall-art mural** in the bottom-right decoration column — so it is always visible.
+
 <br>
 
 插件自带一张原创的黑白「灵压」壁纸。想换成自己的图，把图片保存为 `assets/background.jpg` 再重启 DSH 即可：启动时读取、内联为 data URI，并压上暗色蒙层。右下角的人物海报同理——把方形人像存成 `assets/poster.jpg`，就会替换掉内置的手绘 SVG。
+
+由于整张壁纸通常会被 DSH 自己的外壳挡住，同一张图还会以**装饰壁画**（带画框）的形式挂在右下角装饰区，保证永远看得见。
 
 ```console
 cp ~/Pictures/my-wallpaper.jpg <插件目录>/assets/background.jpg
